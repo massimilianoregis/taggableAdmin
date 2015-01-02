@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" targetNamespace="http://simpleType.common.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xs:simpleType name="CanaleType">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="NSP"/>
+         <xs:enumeration value="FEC"/>
+         <xs:enumeration value="ITN"/>
+         <xs:enumeration value="ATM"/>
+         <xs:enumeration value="POS"/>
+         <xs:enumeration value="IVR"/>
+         <xs:enumeration value="MBN"/>
+         <xs:enumeration value="CBK"/>
+         <xs:enumeration value="ACN"/>
+         <xs:enumeration value="IBR"/>
+         <xs:enumeration value="B2B"/>
+         <xs:enumeration value="BTC"/>
+         <xs:enumeration value="ITR"/>
+         <xs:enumeration value="TST"/>
+      </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

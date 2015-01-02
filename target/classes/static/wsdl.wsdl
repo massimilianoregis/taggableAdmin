@@ -1,0 +1,2902 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="https://tst.vaservices.eu/cbk-qa1/services/Dcms" xmlns:intf="https://tst.vaservices.eu/cbk-qa1/services/Dcms" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://xml.apache.org/id/cartasi/dcms" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://xml.apache.org/id/cartasi/dcms" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="UserData">
+    <sequence>
+     <element name="applicazione" nillable="true" type="xsd:string"/>
+     <element name="session" nillable="true" type="xsd:string"/>
+     <element name="user" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CloseClaimRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType abstract="true" name="Amount">
+    <sequence>
+     <element name="absValue" type="xsd:double"/>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="doubleValue" nillable="true" type="xsd:double"/>
+     <element name="value" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="EventOutput">
+    <sequence>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="freeText" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfEventOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:EventOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ItemOutput">
+    <sequence>
+     <element name="clearingDueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="cycleId" nillable="true" type="xsd:string"/>
+     <element name="direction" nillable="true" type="xsd:string"/>
+     <element name="dueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="processed" nillable="true" type="xsd:boolean"/>
+     <element name="processingDate" nillable="true" type="xsd:dateTime"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="rejected" nillable="true" type="xsd:boolean"/>
+     <element name="reversal" nillable="true" type="xsd:boolean"/>
+     <element name="reversed" nillable="true" type="xsd:boolean"/>
+     <element name="sent" nillable="true" type="xsd:boolean"/>
+     <element name="toSend" nillable="true" type="xsd:boolean"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfItemOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ItemOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="AmountOutput">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="BankOutput">
+    <sequence>
+     <element name="ABI" nillable="true" type="xsd:string"/>
+     <element name="anagrafica" nillable="true" type="xsd:string"/>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="posizione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="HolderOutput">
+    <sequence>
+     <element name="birthDate" nillable="true" type="xsd:dateTime"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CardOutput">
+    <sequence>
+     <element name="bankAccount" nillable="true" type="tns1:BankOutput"/>
+     <element name="coMember" nillable="true" type="xsd:string"/>
+     <element name="creditLimit" nillable="true" type="tns1:AmountOutput"/>
+     <element name="expiryDate" nillable="true" type="xsd:dateTime"/>
+     <element name="fraudReportCounter" type="xsd:int"/>
+     <element name="holder" nillable="true" type="tns1:HolderOutput"/>
+     <element name="language" nillable="true" type="xsd:string"/>
+     <element name="number" nillable="true" type="xsd:string"/>
+     <element name="productCode" nillable="true" type="xsd:string"/>
+     <element name="status" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="MerchantOutput">
+    <sequence>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="country" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="zip" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="TransactionOutput">
+    <sequence>
+     <element name="amount" nillable="true" type="tns1:AmountOutput"/>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="card" nillable="true" type="tns1:CardOutput"/>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="merchant" nillable="true" type="tns1:MerchantOutput"/>
+     <element name="originalTransaction" nillable="true" type="tns1:AmountOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="ClaimOutput">
+    <sequence>
+     <element name="acquirer" nillable="true" type="xsd:string"/>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="cardNumber" nillable="true" type="xsd:string"/>
+     <element name="clearingDueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="clearingNetwork" nillable="true" type="xsd:string"/>
+     <element name="closeReason" nillable="true" type="xsd:string"/>
+     <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="disputedStatementAmount" nillable="true" type="tns1:Amount"/>
+     <element name="disputedTnxAmount" nillable="true" type="tns1:Amount"/>
+     <element name="dueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="events" nillable="true" type="tns1:ArrayOfEventOutput"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="isAccurate" nillable="true" type="xsd:boolean"/>
+     <element name="isAcquirer" nillable="true" type="xsd:boolean"/>
+     <element name="isIssuer" nillable="true" type="xsd:boolean"/>
+     <element name="isOpen" nillable="true" type="xsd:boolean"/>
+     <element name="isVisible" nillable="true" type="xsd:boolean"/>
+     <element name="issuerId" nillable="true" type="xsd:string"/>
+     <element name="issuingBranchCbkId" nillable="true" type="xsd:long"/>
+     <element name="items" nillable="true" type="tns1:ArrayOfItemOutput"/>
+     <element name="lastModifiedBy" nillable="true" type="xsd:string"/>
+     <element name="lastModifiedDate" nillable="true" type="xsd:dateTime"/>
+     <element name="mainDisputedTransaction" nillable="true" type="tns1:TransactionOutput"/>
+     <element name="merchant" nillable="true" type="tns1:MerchantOutput"/>
+     <element name="owner" nillable="true" type="xsd:string"/>
+     <element name="progressState" nillable="true" type="xsd:string"/>
+     <element name="supercaseCbk" nillable="true" type="xsd:string"/>
+     <element name="supercaseId" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="tns1:AmountOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffResponse">
+    <sequence>
+     <element name="claim" nillable="true" type="tns1:ClaimOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="LinkItemToClaimRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:string"/>
+     <element name="itemId" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="AdjustCardHolderDefaultValuesRequest">
+    <sequence>
+     <element name="claimCbkId" nillable="true" type="xsd:long"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="AdjustCardHolderDefaultValuesResponse">
+    <sequence>
+     <element name="credit" nillable="true" type="tns1:AmountOutput"/>
+     <element name="debit" nillable="true" type="tns1:AmountOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateClaimFromItemRequest">
+    <sequence>
+     <element name="itemId" nillable="true" type="xsd:string"/>
+     <element name="team" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="MarkItemProcessedRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="itemId" nillable="true" type="xsd:long"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffRequestAmount">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="costCenterCode" nillable="true" type="xsd:string"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+     <element name="value" nillable="true" type="tns1:WriteOffRequestAmount"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffAndCloseClaimRequestCloseClaimWriteOffRequest">
+    <sequence>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffAndCloseClaimRequest">
+    <complexContent>
+     <extension base="tns1:WriteOffRequest">
+      <sequence>
+       <element name="closeClaim" nillable="true" type="tns1:WriteOffAndCloseClaimRequestCloseClaimWriteOffRequest"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="CreateRetrievalRequest">
+    <sequence>
+     <element name="cbkIdClaim" nillable="true" type="xsd:long"/>
+     <element name="docNeeded" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateAndSendOutput">
+    <sequence>
+     <element name="claim" nillable="true" type="tns1:ClaimOutput"/>
+     <element name="events" nillable="true" type="tns1:ArrayOfEventOutput"/>
+     <element name="items" nillable="true" type="tns1:ArrayOfItemOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindTransactionRequest">
+    <sequence>
+     <element name="card" nillable="true" type="xsd:string"/>
+     <element name="month" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+     <element name="year" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfTransactionOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:TransactionOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="FindOriginalTransactionRequest">
+    <sequence>
+     <element name="cardNumber" nillable="true" type="xsd:string"/>
+     <element name="month" nillable="true" type="xsd:int"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+     <element name="year" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffDefaultValuesRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="WriteOffDefaultValuesResponse">
+    <sequence>
+     <element name="loss" nillable="true" type="tns1:AmountOutput"/>
+     <element name="profit" nillable="true" type="tns1:AmountOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateChargeBackRequestValue">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateChargeBackRequest">
+    <sequence>
+     <element name="CBAmount" nillable="true" type="tns1:CreateChargeBackRequestValue"/>
+     <element name="cbkIdClaim" nillable="true" type="xsd:long"/>
+     <element name="documentIndicatorCode" nillable="true" type="xsd:string"/>
+     <element name="memberMessageCode" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ChangeClaimStateRequest">
+    <sequence>
+     <element name="additionalText" nillable="true" type="xsd:string"/>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="claimState" nillable="true" type="xsd:string"/>
+     <element name="incoming" nillable="true" type="xsd:boolean"/>
+     <element name="outgoing" nillable="true" type="xsd:boolean"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ItemsResponse">
+    <sequence>
+     <element name="items" nillable="true" type="tns1:ArrayOfItemOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="MarkAsUnfullfilledRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="itemId" nillable="true" type="xsd:long"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CancelEventByArnRequest">
+    <sequence>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="FullfillmentByArnRequest">
+    <sequence>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindMiscFeeByItemIdRequest">
+    <sequence>
+     <element name="item" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="MiscFeeOutput">
+    <sequence>
+     <element name="acquiringBin" nillable="true" type="xsd:string"/>
+     <element name="card" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="creditSender" type="xsd:boolean"/>
+     <element name="destinationAmount" nillable="true" type="tns1:AmountOutput"/>
+     <element name="destinationMember" nillable="true" type="xsd:string"/>
+     <element name="destinationRate" type="xsd:double"/>
+     <element name="eventDate" nillable="true" type="xsd:dateTime"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+     <element name="settlementFlag" nillable="true" type="xsd:string"/>
+     <element name="sourceAmount" nillable="true" type="tns1:AmountOutput"/>
+     <element name="sourceBin" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindSupercaseByARNRequest">
+    <sequence>
+     <element name="ARN" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfClaimOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ClaimOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="SupercaseOutput">
+    <sequence>
+     <element name="card" nillable="true" type="tns1:CardOutput"/>
+     <element name="claimType" nillable="true" type="xsd:string"/>
+     <element name="claims" nillable="true" type="tns1:ArrayOfClaimOutput"/>
+     <element name="clearingDueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="creationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="dueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="hasFullContent" nillable="true" type="xsd:boolean"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="idCartasi" nillable="true" type="xsd:string"/>
+     <element name="isOpen" nillable="true" type="xsd:boolean"/>
+     <element name="isVisible" nillable="true" type="xsd:boolean"/>
+     <element name="lastModifiedBy" nillable="true" type="xsd:string"/>
+     <element name="lastModifiedDate" nillable="true" type="xsd:dateTime"/>
+     <element name="value" nillable="true" type="tns1:AmountOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindSupercaseByARNResponseSupercaseAndClaim">
+    <sequence>
+     <element name="claim" nillable="true" type="tns1:ClaimOutput"/>
+     <element name="supercase" nillable="true" type="tns1:SupercaseOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfFindSupercaseByARNResponseSupercaseAndClaim">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:FindSupercaseByARNResponseSupercaseAndClaim[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="FindSupercaseByARNResponse">
+    <sequence>
+     <element name="outputList" nillable="true" type="tns1:ArrayOfFindSupercaseByARNResponseSupercaseAndClaim"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateClaimMultiploRequestData">
+    <sequence>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="claimType" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateClaimMultiploRequest">
+    <sequence>
+     <element name="cardNumber" nillable="true" type="xsd:string"/>
+     <element name="defaultTeam" nillable="true" type="xsd:string"/>
+     <element name="multiple" nillable="true" type="impl:ArrayOf_tns1_CreateClaimMultiploRequestData"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateMiscFeeByCbkIdRequest">
+    <sequence>
+     <element name="amount" nillable="true" type="xsd:double"/>
+     <element name="amountType" nillable="true" type="xsd:string"/>
+     <element name="cbkId" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="destMember" nillable="true" type="xsd:string"/>
+     <element name="msg" nillable="true" type="xsd:string"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="OpenSessionRequest">
+    <sequence>
+     <element name="applicazione" nillable="true" type="xsd:string"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="userId" nillable="true" type="xsd:string"/>
+     <element name="utentePortale" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CloseSessionRequest">
+    <sequence>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateClaimRequestValue">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateClaimRequestFirstPresentmentForm">
+    <sequence>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="cardNumber" nillable="true" type="xsd:string"/>
+     <element name="hostId" nillable="true" type="xsd:string"/>
+     <element name="posizione" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateClaimRequest">
+    <sequence>
+     <element name="claimType" nillable="true" type="xsd:string"/>
+     <element name="defaultTeam" nillable="true" type="xsd:string"/>
+     <element name="disputedAmount" nillable="true" type="tns1:CreateClaimRequestValue"/>
+     <element name="search" nillable="true" type="tns1:CreateClaimRequestFirstPresentmentForm"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReversalByArnRequest">
+    <sequence>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindSuperCaseRequestForm">
+    <sequence>
+     <element name="cardNumber" nillable="true" type="xsd:string"/>
+     <element name="superCaseId" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindSuperCaseRequest">
+    <sequence>
+     <element name="search" nillable="true" type="tns1:FindSuperCaseRequestForm"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfSupercaseOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:SupercaseOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ReOpenClaimRequest">
+    <sequence>
+     <element name="claimCbkId" nillable="true" type="xsd:long"/>
+     <element name="dueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CreateMiscFeeByArnRequest">
+    <sequence>
+     <element name="amount" nillable="true" type="xsd:double"/>
+     <element name="amountType" nillable="true" type="xsd:string"/>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="destMember" nillable="true" type="xsd:string"/>
+     <element name="msg" nillable="true" type="xsd:string"/>
+     <element name="reason" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReverseItemRequest">
+    <sequence>
+     <element name="claimCbkId" nillable="true" type="xsd:long"/>
+     <element name="itemCbkId" nillable="true" type="xsd:long"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CancelEventRequest">
+    <sequence>
+     <element name="eventId" nillable="true" type="xsd:long"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindClaimRequestClaimForm">
+    <sequence>
+     <element name="acquiringRef" nillable="true" type="xsd:string"/>
+     <element name="cardNumber" nillable="true" type="xsd:string"/>
+     <element name="cbkId" nillable="true" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindClaimRequest">
+    <sequence>
+     <element name="search" nillable="true" type="tns1:FindClaimRequestClaimForm"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReplyItemRequestValue">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="ReplyItemRequest">
+    <sequence>
+     <element name="CBAmount" nillable="true" type="tns1:ReplyItemRequestValue"/>
+     <element name="cbkIdItem" nillable="true" type="xsd:long"/>
+     <element name="documentIndicatorCode" nillable="true" type="xsd:string"/>
+     <element name="memberMessageCode" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="ChangeClaimTypeRequest">
+    <sequence>
+     <element name="claimId" nillable="true" type="xsd:long"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindClearingRecordByCbkIdRequest">
+    <sequence>
+     <element name="cbkId" nillable="true" type="xsd:long"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="CollectionTCR0Output">
+    <sequence>
+     <element name="accountNumber" nillable="true" type="xsd:string"/>
+     <element name="centralProcDate" nillable="true" type="xsd:dateTime"/>
+     <element name="correctedEventDate" nillable="true" type="xsd:dateTime"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="destinationAmount" nillable="true" type="xsd:double"/>
+     <element name="destinationBin" nillable="true" type="xsd:string"/>
+     <element name="destinationCcy" nillable="true" type="xsd:string"/>
+     <element name="eventDate" nillable="true" type="xsd:string"/>
+     <element name="messageText" nillable="true" type="xsd:string"/>
+     <element name="panExtension" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="reimbursementAttr" nillable="true" type="xsd:string"/>
+     <element name="reserved" nillable="true" type="xsd:string"/>
+     <element name="settlementFlag" nillable="true" type="xsd:string"/>
+     <element name="sourceAmount" nillable="true" type="xsd:double"/>
+     <element name="sourceBin" nillable="true" type="xsd:string"/>
+     <element name="sourceCcy" nillable="true" type="xsd:string"/>
+     <element name="transactionId" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="AcquiringRefOutput">
+    <sequence>
+     <element name="arn" nillable="true" type="xsd:string"/>
+     <element name="bin" nillable="true" type="xsd:string"/>
+     <element name="date" nillable="true" type="xsd:dateTime"/>
+    </sequence>
+   </complexType>
+   <complexType name="CopyRequestTCR0Output">
+    <sequence>
+     <element name="accountNumber" nillable="true" type="xsd:string"/>
+     <element name="acquirersBusinessID" nillable="true" type="xsd:string"/>
+     <element name="arn" nillable="true" type="tns1:AcquiringRefOutput"/>
+     <element name="atmAccountSelection" nillable="true" type="xsd:string"/>
+     <element name="centralProcDate" nillable="true" type="xsd:dateTime"/>
+     <element name="correctedPurchaseDate" nillable="true" type="xsd:dateTime"/>
+     <element name="issuerControlNumber" nillable="true" type="xsd:string"/>
+     <element name="mcc" nillable="true" type="xsd:string"/>
+     <element name="merchantCity" nillable="true" type="xsd:string"/>
+     <element name="merchantCountry" nillable="true" type="xsd:string"/>
+     <element name="merchantName" nillable="true" type="xsd:string"/>
+     <element name="merchantState" nillable="true" type="xsd:string"/>
+     <element name="merchantZip" nillable="true" type="xsd:string"/>
+     <element name="nationalReimbFee" nillable="true" type="xsd:string"/>
+     <element name="panExtension" nillable="true" type="xsd:string"/>
+     <element name="purchaseDate" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="reimbursementAttr" nillable="true" type="xsd:string"/>
+     <element name="requestID" nillable="true" type="xsd:string"/>
+     <element name="settlementFlag" nillable="true" type="xsd:string"/>
+     <element name="transactionAmount" nillable="true" type="xsd:double"/>
+     <element name="transactionCcy" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DisbursementTCR0Output">
+    <sequence>
+     <element name="accountNumber" nillable="true" type="xsd:string"/>
+     <element name="centralProcDate" nillable="true" type="xsd:dateTime"/>
+     <element name="correctedEventDate" nillable="true" type="xsd:dateTime"/>
+     <element name="countryCode" nillable="true" type="xsd:string"/>
+     <element name="destinationAmount" nillable="true" type="xsd:double"/>
+     <element name="destinationBin" nillable="true" type="xsd:string"/>
+     <element name="destinationCcy" nillable="true" type="xsd:string"/>
+     <element name="eventDate" nillable="true" type="xsd:string"/>
+     <element name="messageText" nillable="true" type="xsd:string"/>
+     <element name="panExtension" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="reimbursementAttr" nillable="true" type="xsd:string"/>
+     <element name="reserved" nillable="true" type="xsd:string"/>
+     <element name="settlementFlag" nillable="true" type="xsd:string"/>
+     <element name="sourceAmount" nillable="true" type="xsd:double"/>
+     <element name="sourceBin" nillable="true" type="xsd:string"/>
+     <element name="sourceCcy" nillable="true" type="xsd:string"/>
+     <element name="transactionId" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DraftTCR0Output">
+    <sequence>
+     <element name="accountNumber" nillable="true" type="xsd:string"/>
+     <element name="acquirersBusinessID" nillable="true" type="xsd:string"/>
+     <element name="arn" nillable="true" type="tns1:AcquiringRefOutput"/>
+     <element name="authorizationCode" nillable="true" type="xsd:string"/>
+     <element name="authorizationIndicator" nillable="true" type="xsd:string"/>
+     <element name="cardholderIDMethod" nillable="true" type="xsd:string"/>
+     <element name="centralProcDate" nillable="true" type="xsd:dateTime"/>
+     <element name="collectionOnlyFlag" nillable="true" type="xsd:string"/>
+     <element name="correctedPurchaseDate" nillable="true" type="xsd:dateTime"/>
+     <element name="destinationAmount" nillable="true" type="xsd:double"/>
+     <element name="destinationCcy" nillable="true" type="xsd:string"/>
+     <element name="exceptionFileIndicator" nillable="true" type="xsd:string"/>
+     <element name="floorLimitIndicator" nillable="true" type="xsd:string"/>
+     <element name="intlFeeIndicator" nillable="true" type="xsd:string"/>
+     <element name="mcc" nillable="true" type="xsd:string"/>
+     <element name="merchantCity" nillable="true" type="xsd:string"/>
+     <element name="merchantCountry" nillable="true" type="xsd:string"/>
+     <element name="merchantName" nillable="true" type="xsd:string"/>
+     <element name="merchantState" nillable="true" type="xsd:string"/>
+     <element name="merchantZip" nillable="true" type="xsd:string"/>
+     <element name="panExtension" nillable="true" type="xsd:string"/>
+     <element name="pcasIndicator" nillable="true" type="xsd:string"/>
+     <element name="posCapability" nillable="true" type="xsd:string"/>
+     <element name="posEntryMode" nillable="true" type="xsd:string"/>
+     <element name="purchaseDate" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="reimbursementAttr" nillable="true" type="xsd:string"/>
+     <element name="requestedPaymentService" nillable="true" type="xsd:string"/>
+     <element name="reserved" nillable="true" type="xsd:string"/>
+     <element name="settlementFlag" nillable="true" type="xsd:string"/>
+     <element name="sourceAmount" nillable="true" type="xsd:double"/>
+     <element name="sourceCcy" nillable="true" type="xsd:string"/>
+     <element name="usageCode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="DraftTCR1Output">
+    <sequence>
+     <element name="acquirerStationBIN" nillable="true" type="xsd:string"/>
+     <element name="atmAccountSelection" nillable="true" type="xsd:string"/>
+     <element name="authSourceCode" nillable="true" type="xsd:string"/>
+     <element name="avsResponseCode" nillable="true" type="xsd:string"/>
+     <element name="cardAcceptorID" nillable="true" type="xsd:string"/>
+     <element name="cashback" nillable="true" type="xsd:double"/>
+     <element name="cbRefNumber" nillable="true" type="xsd:string"/>
+     <element name="chipConditionCode" nillable="true" type="xsd:string"/>
+     <element name="documentIndicator" nillable="true" type="xsd:string"/>
+     <element name="feeProgramIndic" nillable="true" type="xsd:string"/>
+     <element name="installmentPaymentCount" nillable="true" type="xsd:string"/>
+     <element name="interfaceTraceNumber" nillable="true" type="xsd:string"/>
+     <element name="issuerChange" nillable="true" type="xsd:string"/>
+     <element name="issuerStationBIN" nillable="true" type="xsd:string"/>
+     <element name="memberMessageText" nillable="true" type="xsd:string"/>
+     <element name="motoEcIndicator" nillable="true" type="xsd:string"/>
+     <element name="nationalReimbFee" nillable="true" type="xsd:string"/>
+     <element name="posEnvironment" nillable="true" type="xsd:string"/>
+     <element name="prepaidCardIndic" nillable="true" type="xsd:string"/>
+     <element name="purchaseId" nillable="true" type="xsd:string"/>
+     <element name="purchaseIdFormat" nillable="true" type="xsd:string"/>
+     <element name="reserved" nillable="true" type="xsd:string"/>
+     <element name="serviceDvpField" nillable="true" type="xsd:string"/>
+     <element name="specialCbkIndic" nillable="true" type="xsd:string"/>
+     <element name="specialConditionIndic" nillable="true" type="xsd:string"/>
+     <element name="terminalID" nillable="true" type="xsd:string"/>
+     <element name="unattendedPosIndic" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Base2RecordOutput">
+    <sequence>
+     <element name="collectionTCR0" nillable="true" type="tns1:CollectionTCR0Output"/>
+     <element name="copyRequestTCR0" nillable="true" type="tns1:CopyRequestTCR0Output"/>
+     <element name="disbursementTCR0" nillable="true" type="tns1:DisbursementTCR0Output"/>
+     <element name="draftTCR0" nillable="true" type="tns1:DraftTCR0Output"/>
+     <element name="draftTCR1" nillable="true" type="tns1:DraftTCR1Output"/>
+     <element name="isCollection" nillable="true" type="xsd:boolean"/>
+     <element name="isCopyRequest" nillable="true" type="xsd:boolean"/>
+     <element name="isDisbursement" nillable="true" type="xsd:boolean"/>
+     <element name="isDraft" nillable="true" type="xsd:boolean"/>
+     <element name="isFee" nillable="true" type="xsd:boolean"/>
+     <element name="isFirstPresentment" nillable="true" type="xsd:boolean"/>
+     <element name="isFraud" nillable="true" type="xsd:boolean"/>
+     <element name="isReject" nillable="true" type="xsd:boolean"/>
+     <element name="isReturn" nillable="true" type="xsd:boolean"/>
+     <element name="isSecondPresentment" nillable="true" type="xsd:boolean"/>
+     <element name="isWarningCode" nillable="true" type="xsd:boolean"/>
+     <element name="recVersion" nillable="true" type="xsd:string"/>
+     <element name="tcCode" nillable="true" type="xsd:short"/>
+    </sequence>
+   </complexType>
+   <complexType name="ProcessingCodeOutput">
+    <sequence>
+     <element name="s1" nillable="true" type="xsd:string"/>
+     <element name="s2" nillable="true" type="xsd:string"/>
+     <element name="s3" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PosDataCodeOutput">
+    <sequence>
+     <element name="s1" nillable="true" type="xsd:string"/>
+     <element name="s10" nillable="true" type="xsd:string"/>
+     <element name="s2" nillable="true" type="xsd:string"/>
+     <element name="s3" nillable="true" type="xsd:string"/>
+     <element name="s4" nillable="true" type="xsd:string"/>
+     <element name="s5" nillable="true" type="xsd:string"/>
+     <element name="s6" nillable="true" type="xsd:string"/>
+     <element name="s7" nillable="true" type="xsd:string"/>
+     <element name="s8" nillable="true" type="xsd:string"/>
+     <element name="s9" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="OriginalAmountsOutput">
+    <sequence>
+     <element name="s1TransactionAmount" nillable="true" type="xsd:long"/>
+     <element name="s1TransactionAmountValue" nillable="true" type="xsd:double"/>
+     <element name="s2ReconciliationAmount" nillable="true" type="xsd:long"/>
+     <element name="s2ReconciliationAmountValue" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="CardAcceptorNameAndLocationOutput">
+    <sequence>
+     <element name="s1Name" nillable="true" type="xsd:string"/>
+     <element name="s2StreetAddress" nillable="true" type="xsd:string"/>
+     <element name="s3City" nillable="true" type="xsd:string"/>
+     <element name="s4Zip" nillable="true" type="xsd:string"/>
+     <element name="s5State" nillable="true" type="xsd:string"/>
+     <element name="s6Country" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="AdditionalAmountOutput">
+    <sequence>
+     <element name="s1" type="xsd:short"/>
+     <element name="s2" type="xsd:short"/>
+     <element name="s3" type="xsd:short"/>
+     <element name="s4" nillable="true" type="xsd:string"/>
+     <element name="s5" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfAdditionalAmountOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:AdditionalAmountOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="TransactionLifeCycleOutput">
+    <sequence>
+     <element name="s1" nillable="true" type="xsd:string"/>
+     <element name="s2" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="PdsOutput">
+    <sequence>
+     <element name="id" nillable="true" type="xsd:long"/>
+     <element name="number" nillable="true" type="xsd:short"/>
+     <element name="value" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOfPdsOutput">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:PdsOutput[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="IpmRecordOutput">
+    <sequence>
+     <element name="isReject" nillable="true" type="xsd:boolean"/>
+     <element name="pdsElements" nillable="true" type="tns1:ArrayOfPdsOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="IsoRecordOutput">
+    <sequence>
+     <element name="de000" nillable="true" type="xsd:string"/>
+     <element name="de001" nillable="true" type="xsd:string"/>
+     <element name="de002" nillable="true" type="xsd:string"/>
+     <element name="de003" nillable="true" type="tns1:ProcessingCodeOutput"/>
+     <element name="de004" nillable="true" type="xsd:long"/>
+     <element name="de004AmountValue" nillable="true" type="xsd:double"/>
+     <element name="de005" nillable="true" type="xsd:long"/>
+     <element name="de005AmountValue" nillable="true" type="xsd:double"/>
+     <element name="de006" nillable="true" type="xsd:long"/>
+     <element name="de006AmountValue" nillable="true" type="xsd:double"/>
+     <element name="de007" nillable="true" type="xsd:dateTime"/>
+     <element name="de008" nillable="true" type="xsd:long"/>
+     <element name="de008AmountValue" nillable="true" type="xsd:double"/>
+     <element name="de009" nillable="true" type="xsd:double"/>
+     <element name="de010" nillable="true" type="xsd:double"/>
+     <element name="de011" nillable="true" type="xsd:string"/>
+     <element name="de012" nillable="true" type="xsd:dateTime"/>
+     <element name="de013" nillable="true" type="xsd:dateTime"/>
+     <element name="de014" nillable="true" type="xsd:dateTime"/>
+     <element name="de016" nillable="true" type="xsd:dateTime"/>
+     <element name="de017" nillable="true" type="xsd:dateTime"/>
+     <element name="de019" nillable="true" type="xsd:string"/>
+     <element name="de022" nillable="true" type="tns1:PosDataCodeOutput"/>
+     <element name="de023" nillable="true" type="xsd:short"/>
+     <element name="de024" nillable="true" type="xsd:short"/>
+     <element name="de025" nillable="true" type="xsd:short"/>
+     <element name="de026" nillable="true" type="xsd:short"/>
+     <element name="de028" nillable="true" type="xsd:dateTime"/>
+     <element name="de029" nillable="true" type="xsd:short"/>
+     <element name="de030" nillable="true" type="tns1:OriginalAmountsOutput"/>
+     <element name="de030WithCCiesAndExponents" nillable="true" type="tns1:OriginalAmountsOutput"/>
+     <element name="de031" nillable="true" type="tns1:AcquiringRefOutput"/>
+     <element name="de032" nillable="true" type="xsd:string"/>
+     <element name="de033" nillable="true" type="xsd:string"/>
+     <element name="de034" nillable="true" type="xsd:string"/>
+     <element name="de035" nillable="true" type="xsd:string"/>
+     <element name="de036" nillable="true" type="xsd:string"/>
+     <element name="de037" nillable="true" type="xsd:string"/>
+     <element name="de038" nillable="true" type="xsd:string"/>
+     <element name="de039" nillable="true" type="xsd:string"/>
+     <element name="de040" nillable="true" type="xsd:string"/>
+     <element name="de041" nillable="true" type="xsd:string"/>
+     <element name="de042" nillable="true" type="xsd:string"/>
+     <element name="de043" nillable="true" type="tns1:CardAcceptorNameAndLocationOutput"/>
+     <element name="de045" nillable="true" type="xsd:string"/>
+     <element name="de049" nillable="true" type="xsd:short"/>
+     <element name="de050" nillable="true" type="xsd:short"/>
+     <element name="de051" nillable="true" type="xsd:short"/>
+     <element name="de054" nillable="true" type="tns1:ArrayOfAdditionalAmountOutput"/>
+     <element name="de054WithExponent" nillable="true" type="tns1:ArrayOfAdditionalAmountOutput"/>
+     <element name="de055" nillable="true" type="xsd:string"/>
+     <element name="de056" nillable="true" type="xsd:string"/>
+     <element name="de058" nillable="true" type="xsd:string"/>
+     <element name="de063" nillable="true" type="tns1:TransactionLifeCycleOutput"/>
+     <element name="de071" nillable="true" type="xsd:int"/>
+     <element name="de072" nillable="true" type="xsd:string"/>
+     <element name="de073" nillable="true" type="xsd:dateTime"/>
+     <element name="de074" nillable="true" type="xsd:long"/>
+     <element name="de075" nillable="true" type="xsd:long"/>
+     <element name="de076" nillable="true" type="xsd:long"/>
+     <element name="de077" nillable="true" type="xsd:long"/>
+     <element name="de086" nillable="true" type="xsd:long"/>
+     <element name="de087" nillable="true" type="xsd:long"/>
+     <element name="de088" nillable="true" type="xsd:long"/>
+     <element name="de089" nillable="true" type="xsd:long"/>
+     <element name="de093" nillable="true" type="xsd:string"/>
+     <element name="de094" nillable="true" type="xsd:string"/>
+     <element name="de095" nillable="true" type="xsd:long"/>
+     <element name="de097" nillable="true" type="xsd:string"/>
+     <element name="de100" nillable="true" type="xsd:string"/>
+     <element name="de105" nillable="true" type="xsd:long"/>
+     <element name="de106" nillable="true" type="xsd:long"/>
+     <element name="de107" nillable="true" type="xsd:long"/>
+     <element name="de108" nillable="true" type="xsd:long"/>
+     <element name="de109" nillable="true" type="xsd:string"/>
+     <element name="de110" nillable="true" type="xsd:string"/>
+     <element name="de111" nillable="true" type="xsd:long"/>
+     <element name="de111AmountValue" nillable="true" type="xsd:double"/>
+     <element name="de123" nillable="true" type="xsd:string"/>
+     <element name="de126" nillable="true" type="xsd:string"/>
+     <element name="de127" nillable="true" type="xsd:string"/>
+     <element name="ipmRecord" nillable="true" type="tns1:IpmRecordOutput"/>
+     <element name="isAddendum" nillable="true" type="xsd:boolean"/>
+     <element name="isChargeback" nillable="true" type="xsd:boolean"/>
+     <element name="isFeeCollection" nillable="true" type="xsd:boolean"/>
+     <element name="isFirstPresentment" nillable="true" type="xsd:boolean"/>
+     <element name="isIpm" nillable="true" type="xsd:boolean"/>
+     <element name="isRetrievalRequest" nillable="true" type="xsd:boolean"/>
+     <element name="isSecondPresentment" nillable="true" type="xsd:boolean"/>
+     <element name="plainDe054" nillable="true" type="tns1:ArrayOfAdditionalAmountOutput"/>
+     <element name="recVersion" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ClearingRecordOutput">
+    <sequence>
+     <element name="additionalData" nillable="true" type="impl:ArrayOf_xsd_string"/>
+     <element name="base2Record" nillable="true" type="tns1:Base2RecordOutput"/>
+     <element name="cbkId" nillable="true" type="xsd:long"/>
+     <element name="format" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:long"/>
+     <element name="isBase2" nillable="true" type="xsd:boolean"/>
+     <element name="isEditable" nillable="true" type="xsd:boolean"/>
+     <element name="isIso" nillable="true" type="xsd:boolean"/>
+     <element name="isoRecord" nillable="true" type="tns1:IsoRecordOutput"/>
+     <element name="recordClass" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindClearingRecordByCbkIdResponse">
+    <sequence>
+     <element name="clearingRecord" nillable="true" type="tns1:ClearingRecordOutput"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindOriginalTransactionCbkIdByClaimCbkIdRequest">
+    <sequence>
+     <element name="claimCbkId" type="xsd:long"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="FindOriginalTransactionCbkIdByClaimCbkIdResponse">
+    <sequence>
+     <element name="originalTransactionCbkId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="AdjustCardHolderRequestValue">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="AdjustCardHolderRequest">
+    <sequence>
+     <element name="claimCbkId" nillable="true" type="xsd:long"/>
+     <element name="importo" nillable="true" type="tns1:AdjustCardHolderRequestValue"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="tipo" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="AdjustCardHolderResponse">
+    <sequence>
+     <element name="claim" nillable="true" type="tns1:ClaimOutput"/>
+     <element name="events" nillable="true" type="tns1:ArrayOfEventOutput"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="RepostFraudTransactionRequestValue">
+    <sequence>
+     <element name="currency" nillable="true" type="xsd:string"/>
+     <element name="value" nillable="true" type="xsd:double"/>
+    </sequence>
+   </complexType>
+   <complexType name="RepostFraudTransactionRequest">
+    <sequence>
+     <element name="claimCbkId" nillable="true" type="xsd:long"/>
+     <element name="importo" nillable="true" type="tns1:RepostFraudTransactionRequestValue"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+     <element name="reasonCode" nillable="true" type="xsd:string"/>
+     <element name="tipo" nillable="true" type="xsd:string"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="RepostFraudTransactionResponse">
+    <sequence>
+     <element name="claim" nillable="true" type="tns1:ClaimOutput"/>
+     <element name="events" nillable="true" type="tns1:ArrayOfEventOutput"/>
+     <element name="type" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="SendItemRequest">
+    <sequence>
+     <element name="cbkId" nillable="true" type="xsd:long"/>
+     <element name="dueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="hideClaim" nillable="true" type="xsd:boolean"/>
+     <element name="userData" nillable="true" type="tns1:UserData"/>
+    </sequence>
+   </complexType>
+   <complexType name="SendItemResponse">
+    <sequence>
+     <element name="events" nillable="true" type="tns1:ArrayOfEventOutput"/>
+     <element name="item" nillable="true" type="tns1:ItemOutput"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema targetNamespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xml.apache.org/id/cartasi/dcms"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_xsd_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="ArrayOf_tns1_CreateClaimMultiploRequestData">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:CreateClaimMultiploRequestData[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="replyItemRequest">
+
+      <wsdl:part name="request" type="tns1:ReplyItemRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findSuperCaseRequest">
+
+      <wsdl:part name="request" type="tns1:FindSuperCaseRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeOffdefaultValuesResponse">
+
+      <wsdl:part name="writeOffdefaultValuesReturn" type="tns1:WriteOffDefaultValuesResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findClaimRequest">
+
+      <wsdl:part name="request" type="tns1:FindClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createAndSendRetrievalRequest">
+
+      <wsdl:part name="request" type="tns1:CreateRetrievalRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeOffAndCloseClaimResponse">
+
+      <wsdl:part name="writeOffAndCloseClaimReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeClaimTypeRequest">
+
+      <wsdl:part name="request" type="tns1:ChangeClaimTypeRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createClaimMultiploRequest">
+
+      <wsdl:part name="request" type="tns1:CreateClaimMultiploRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeClaimStateRequest">
+
+      <wsdl:part name="request" type="tns1:ChangeClaimStateRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createAndSendRetrievalResponse">
+
+      <wsdl:part name="createAndSendRetrievalReturn" type="tns1:CreateAndSendOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendItemResponse">
+
+      <wsdl:part name="sendItemReturn" type="tns1:SendItemResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createAndSendChargeBackResponse">
+
+      <wsdl:part name="createAndSendChargeBackReturn" type="tns1:CreateAndSendOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelEventByArnResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="closeClaimRequest">
+
+      <wsdl:part name="request" type="tns1:CloseClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createMiscFeeRequest">
+
+      <wsdl:part name="request" type="tns1:CreateMiscFeeByArnRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="mainResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="createClaimResponse">
+
+      <wsdl:part name="createClaimReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createAndSendChargeBackRequest">
+
+      <wsdl:part name="request" type="tns1:CreateChargeBackRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="changeClaimStateResponse">
+
+      <wsdl:part name="changeClaimStateReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createMiscFeeByCbkIdResponse">
+
+      <wsdl:part name="createMiscFeeByCbkIdReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="repostFraudTransactionResponse">
+
+      <wsdl:part name="repostFraudTransactionReturn" type="tns1:RepostFraudTransactionResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="repostFraudTransactionRequest">
+
+      <wsdl:part name="request" type="tns1:RepostFraudTransactionRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findOriginalTransactionCbkIdByClaimCbkIdRequest">
+
+      <wsdl:part name="request" type="tns1:FindOriginalTransactionCbkIdByClaimCbkIdRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="reOpenClaimResponse">
+
+      <wsdl:part name="reOpenClaimReturn" type="tns1:EventOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="markAsUnfullfilledResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="findMiscFeeByItemRequest">
+
+      <wsdl:part name="request" type="tns1:FindMiscFeeByItemIdRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="closeClaimAndItemProcessedResponse">
+
+      <wsdl:part name="closeClaimAndItemProcessedReturn" type="tns1:WriteOffResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findClearingRecordByCbkIdResponse">
+
+      <wsdl:part name="findClearingRecordByCbkIdReturn" type="tns1:FindClearingRecordByCbkIdResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelEventRequest">
+
+      <wsdl:part name="request" type="tns1:CancelEventRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="reverseItemRequest">
+
+      <wsdl:part name="request" type="tns1:ReverseItemRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="openSessionRequest">
+
+      <wsdl:part name="request" type="tns1:OpenSessionRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeOffAndCloseClaimRequest">
+
+      <wsdl:part name="request" type="tns1:WriteOffAndCloseClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelEventByArnRequest">
+
+      <wsdl:part name="request" type="tns1:CancelEventByArnRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fullfillmentByArnRequest">
+
+      <wsdl:part name="request" type="tns1:FullfillmentByArnRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="closeClaimResponse">
+
+      <wsdl:part name="closeClaimReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="adjustCardHolderRequest">
+
+      <wsdl:part name="request" type="tns1:AdjustCardHolderRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createRetrievalRequest">
+
+      <wsdl:part name="request" type="tns1:CreateRetrievalRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findSupercaseByARNResponse">
+
+      <wsdl:part name="findSupercaseByARNReturn" type="tns1:FindSupercaseByARNResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="reverseItemResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="reversalByArnResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="changeClaimTypeResponse">
+
+      <wsdl:part name="changeClaimTypeReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="adjustCardHolderResponse">
+
+      <wsdl:part name="adjustCardHolderReturn" type="tns1:AdjustCardHolderResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="CompositeException">
+
+   </wsdl:message>
+
+   <wsdl:message name="adjustCardholderDefaultValueRequest">
+
+      <wsdl:part name="request" type="tns1:AdjustCardHolderDefaultValuesRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="closeSessionRequest">
+
+      <wsdl:part name="request" type="tns1:CloseSessionRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="closeSessionResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="markItemProcessedResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="findOriginalTransactionRequest">
+
+      <wsdl:part name="request" type="tns1:FindOriginalTransactionRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createChargeBackRequest">
+
+      <wsdl:part name="request" type="tns1:CreateChargeBackRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findSuperCaseResponse">
+
+      <wsdl:part name="findSuperCaseReturn" type="tns1:ArrayOfSupercaseOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createMiscFeeByCbkIdRequest">
+
+      <wsdl:part name="request" type="tns1:CreateMiscFeeByCbkIdRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="markAsUnfullfilledRequest">
+
+      <wsdl:part name="request" type="tns1:MarkAsUnfullfilledRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createClaimFromItemRequest">
+
+      <wsdl:part name="request" type="tns1:CreateClaimFromItemRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeOffResponse">
+
+      <wsdl:part name="writeOffReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="closeClaimAndItemProcessedRequest">
+
+      <wsdl:part name="request" type="tns1:CloseClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createChargeBackResponse">
+
+      <wsdl:part name="createChargeBackReturn" type="tns1:ItemsResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="reversalByArnRequest">
+
+      <wsdl:part name="request" type="tns1:ReversalByArnRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="fullfillmentByArnResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="mainRequest">
+
+      <wsdl:part name="args" type="impl:ArrayOf_xsd_string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="reOpenClaimRequest">
+
+      <wsdl:part name="request" type="tns1:ReOpenClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findMiscFeeByItemResponse">
+
+      <wsdl:part name="findMiscFeeByItemReturn" type="tns1:MiscFeeOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createMiscFeeResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="createClaimRequest">
+
+      <wsdl:part name="request" type="tns1:CreateClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="linkItemToClaimRequest">
+
+      <wsdl:part name="request" type="tns1:LinkItemToClaimRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findOriginalTransactionCbkIdByClaimCbkIdResponse">
+
+      <wsdl:part name="findOriginalTransactionCbkIdByClaimCbkIdReturn" type="tns1:FindOriginalTransactionCbkIdByClaimCbkIdResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findTransactionResponse">
+
+      <wsdl:part name="findTransactionReturn" type="tns1:ArrayOfTransactionOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeOffdefaultValuesRequest">
+
+      <wsdl:part name="request" type="tns1:WriteOffDefaultValuesRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createClaimMultiploResponse">
+
+      <wsdl:part name="createClaimMultiploReturn" type="tns1:ArrayOfClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findTransactionRequest">
+
+      <wsdl:part name="request" type="tns1:FindTransactionRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createClaimFromItemResponse">
+
+      <wsdl:part name="createClaimFromItemReturn" type="tns1:ClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="adjustCardholderDefaultValueResponse">
+
+      <wsdl:part name="adjustCardholderDefaultValueReturn" type="tns1:AdjustCardHolderDefaultValuesResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="replyItemResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="markItemProcessedRequest">
+
+      <wsdl:part name="request" type="tns1:MarkItemProcessedRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createRetrievalResponse">
+
+      <wsdl:part name="createRetrievalReturn" type="tns1:ItemsResponse">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="cancelEventResponse">
+
+      <wsdl:part name="cancelEventReturn" type="tns1:ArrayOfEventOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sendItemRequest">
+
+      <wsdl:part name="request" type="tns1:SendItemRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="openSessionResponse">
+
+      <wsdl:part name="openSessionReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findClearingRecordByCbkIdRequest">
+
+      <wsdl:part name="request" type="tns1:FindClearingRecordByCbkIdRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findSupercaseByARNRequest">
+
+      <wsdl:part name="request" type="tns1:FindSupercaseByARNRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="linkItemToClaimResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="writeOffRequest">
+
+      <wsdl:part name="request" type="tns1:WriteOffRequest">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findClaimResponse">
+
+      <wsdl:part name="findClaimReturn" type="tns1:ArrayOfClaimOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findOriginalTransactionResponse">
+
+      <wsdl:part name="findOriginalTransactionReturn" type="tns1:ArrayOfTransactionOutput">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DcmsLogged">
+
+      <wsdl:operation name="closeClaimAndItemProcessed" parameterOrder="request">
+
+         <wsdl:input message="impl:closeClaimAndItemProcessedRequest" name="closeClaimAndItemProcessedRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:closeClaimAndItemProcessedResponse" name="closeClaimAndItemProcessedResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:CompositeException" name="CompositeException">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="main" parameterOrder="args">
+
+         <wsdl:input message="impl:mainRequest" name="mainRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:mainResponse" name="mainResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="linkItemToClaim" parameterOrder="request">
+
+         <wsdl:input message="impl:linkItemToClaimRequest" name="linkItemToClaimRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:linkItemToClaimResponse" name="linkItemToClaimResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="adjustCardholderDefaultValue" parameterOrder="request">
+
+         <wsdl:input message="impl:adjustCardholderDefaultValueRequest" name="adjustCardholderDefaultValueRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:adjustCardholderDefaultValueResponse" name="adjustCardholderDefaultValueResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createClaimFromItem" parameterOrder="request">
+
+         <wsdl:input message="impl:createClaimFromItemRequest" name="createClaimFromItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createClaimFromItemResponse" name="createClaimFromItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="markItemProcessed" parameterOrder="request">
+
+         <wsdl:input message="impl:markItemProcessedRequest" name="markItemProcessedRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:markItemProcessedResponse" name="markItemProcessedResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeOffAndCloseClaim" parameterOrder="request">
+
+         <wsdl:input message="impl:writeOffAndCloseClaimRequest" name="writeOffAndCloseClaimRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:writeOffAndCloseClaimResponse" name="writeOffAndCloseClaimResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createAndSendRetrieval" parameterOrder="request">
+
+         <wsdl:input message="impl:createAndSendRetrievalRequest" name="createAndSendRetrievalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createAndSendRetrievalResponse" name="createAndSendRetrievalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findTransaction" parameterOrder="request">
+
+         <wsdl:input message="impl:findTransactionRequest" name="findTransactionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findTransactionResponse" name="findTransactionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findOriginalTransaction" parameterOrder="request">
+
+         <wsdl:input message="impl:findOriginalTransactionRequest" name="findOriginalTransactionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findOriginalTransactionResponse" name="findOriginalTransactionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeOffdefaultValues" parameterOrder="request">
+
+         <wsdl:input message="impl:writeOffdefaultValuesRequest" name="writeOffdefaultValuesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:writeOffdefaultValuesResponse" name="writeOffdefaultValuesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createAndSendChargeBack" parameterOrder="request">
+
+         <wsdl:input message="impl:createAndSendChargeBackRequest" name="createAndSendChargeBackRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createAndSendChargeBackResponse" name="createAndSendChargeBackResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeClaimState" parameterOrder="request">
+
+         <wsdl:input message="impl:changeClaimStateRequest" name="changeClaimStateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changeClaimStateResponse" name="changeClaimStateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createChargeBack" parameterOrder="request">
+
+         <wsdl:input message="impl:createChargeBackRequest" name="createChargeBackRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createChargeBackResponse" name="createChargeBackResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createRetrieval" parameterOrder="request">
+
+         <wsdl:input message="impl:createRetrievalRequest" name="createRetrievalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createRetrievalResponse" name="createRetrievalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="markAsUnfullfilled" parameterOrder="request">
+
+         <wsdl:input message="impl:markAsUnfullfilledRequest" name="markAsUnfullfilledRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:markAsUnfullfilledResponse" name="markAsUnfullfilledResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelEventByArn" parameterOrder="request">
+
+         <wsdl:input message="impl:cancelEventByArnRequest" name="cancelEventByArnRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cancelEventByArnResponse" name="cancelEventByArnResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fullfillmentByArn" parameterOrder="request">
+
+         <wsdl:input message="impl:fullfillmentByArnRequest" name="fullfillmentByArnRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:fullfillmentByArnResponse" name="fullfillmentByArnResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findMiscFeeByItem" parameterOrder="request">
+
+         <wsdl:input message="impl:findMiscFeeByItemRequest" name="findMiscFeeByItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findMiscFeeByItemResponse" name="findMiscFeeByItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findSupercaseByARN" parameterOrder="request">
+
+         <wsdl:input message="impl:findSupercaseByARNRequest" name="findSupercaseByARNRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findSupercaseByARNResponse" name="findSupercaseByARNResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createClaimMultiplo" parameterOrder="request">
+
+         <wsdl:input message="impl:createClaimMultiploRequest" name="createClaimMultiploRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createClaimMultiploResponse" name="createClaimMultiploResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMiscFeeByCbkId" parameterOrder="request">
+
+         <wsdl:input message="impl:createMiscFeeByCbkIdRequest" name="createMiscFeeByCbkIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createMiscFeeByCbkIdResponse" name="createMiscFeeByCbkIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="openSession" parameterOrder="request">
+
+         <wsdl:input message="impl:openSessionRequest" name="openSessionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:openSessionResponse" name="openSessionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="closeSession" parameterOrder="request">
+
+         <wsdl:input message="impl:closeSessionRequest" name="closeSessionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:closeSessionResponse" name="closeSessionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createClaim" parameterOrder="request">
+
+         <wsdl:input message="impl:createClaimRequest" name="createClaimRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createClaimResponse" name="createClaimResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reversalByArn" parameterOrder="request">
+
+         <wsdl:input message="impl:reversalByArnRequest" name="reversalByArnRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:reversalByArnResponse" name="reversalByArnResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findSuperCase" parameterOrder="request">
+
+         <wsdl:input message="impl:findSuperCaseRequest" name="findSuperCaseRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findSuperCaseResponse" name="findSuperCaseResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reOpenClaim" parameterOrder="request">
+
+         <wsdl:input message="impl:reOpenClaimRequest" name="reOpenClaimRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:reOpenClaimResponse" name="reOpenClaimResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMiscFee" parameterOrder="request">
+
+         <wsdl:input message="impl:createMiscFeeRequest" name="createMiscFeeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createMiscFeeResponse" name="createMiscFeeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reverseItem" parameterOrder="request">
+
+         <wsdl:input message="impl:reverseItemRequest" name="reverseItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:reverseItemResponse" name="reverseItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelEvent" parameterOrder="request">
+
+         <wsdl:input message="impl:cancelEventRequest" name="cancelEventRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:cancelEventResponse" name="cancelEventResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findClaim" parameterOrder="request">
+
+         <wsdl:input message="impl:findClaimRequest" name="findClaimRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findClaimResponse" name="findClaimResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="replyItem" parameterOrder="request">
+
+         <wsdl:input message="impl:replyItemRequest" name="replyItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:replyItemResponse" name="replyItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeClaimType" parameterOrder="request">
+
+         <wsdl:input message="impl:changeClaimTypeRequest" name="changeClaimTypeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:changeClaimTypeResponse" name="changeClaimTypeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findClearingRecordByCbkId" parameterOrder="request">
+
+         <wsdl:input message="impl:findClearingRecordByCbkIdRequest" name="findClearingRecordByCbkIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findClearingRecordByCbkIdResponse" name="findClearingRecordByCbkIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findOriginalTransactionCbkIdByClaimCbkId" parameterOrder="request">
+
+         <wsdl:input message="impl:findOriginalTransactionCbkIdByClaimCbkIdRequest" name="findOriginalTransactionCbkIdByClaimCbkIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findOriginalTransactionCbkIdByClaimCbkIdResponse" name="findOriginalTransactionCbkIdByClaimCbkIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="adjustCardHolder" parameterOrder="request">
+
+         <wsdl:input message="impl:adjustCardHolderRequest" name="adjustCardHolderRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:adjustCardHolderResponse" name="adjustCardHolderResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="repostFraudTransaction" parameterOrder="request">
+
+         <wsdl:input message="impl:repostFraudTransactionRequest" name="repostFraudTransactionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:repostFraudTransactionResponse" name="repostFraudTransactionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="closeClaim" parameterOrder="request">
+
+         <wsdl:input message="impl:closeClaimRequest" name="closeClaimRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:closeClaimResponse" name="closeClaimResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeOff" parameterOrder="request">
+
+         <wsdl:input message="impl:writeOffRequest" name="writeOffRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:writeOffResponse" name="writeOffResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendItem" parameterOrder="request">
+
+         <wsdl:input message="impl:sendItemRequest" name="sendItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sendItemResponse" name="sendItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DcmsSoapBinding" type="impl:DcmsLogged">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="closeClaimAndItemProcessed">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="closeClaimAndItemProcessedRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://xml.apache.org/id/cartasi/dcms" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="closeClaimAndItemProcessedResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://xml.apache.org/id/cartasi/dcms" use="encoded"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="CompositeException">
+
+            <wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="CompositeException" namespace="http://xml.apache.org/id/cartasi/dcms" use="encoded"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="main">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="mainRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="mainResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="linkItemToClaim">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="linkItemToClaimRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="linkItemToClaimResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="adjustCardholderDefaultValue">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="adjustCardholderDefaultValueRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="adjustCardholderDefaultValueResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createClaimFromItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createClaimFromItemRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createClaimFromItemResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="markItemProcessed">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="markItemProcessedRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="markItemProcessedResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeOffAndCloseClaim">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="writeOffAndCloseClaimRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="writeOffAndCloseClaimResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createAndSendRetrieval">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createAndSendRetrievalRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createAndSendRetrievalResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findTransaction">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findTransactionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findTransactionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findOriginalTransaction">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findOriginalTransactionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findOriginalTransactionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeOffdefaultValues">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="writeOffdefaultValuesRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="writeOffdefaultValuesResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createAndSendChargeBack">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createAndSendChargeBackRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createAndSendChargeBackResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeClaimState">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changeClaimStateRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changeClaimStateResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createChargeBack">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createChargeBackRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createChargeBackResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createRetrieval">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createRetrievalRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createRetrievalResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="markAsUnfullfilled">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="markAsUnfullfilledRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="markAsUnfullfilledResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelEventByArn">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelEventByArnRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelEventByArnResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="fullfillmentByArn">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="fullfillmentByArnRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="fullfillmentByArnResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findMiscFeeByItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findMiscFeeByItemRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findMiscFeeByItemResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findSupercaseByARN">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findSupercaseByARNRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findSupercaseByARNResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createClaimMultiplo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createClaimMultiploRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createClaimMultiploResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMiscFeeByCbkId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createMiscFeeByCbkIdRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createMiscFeeByCbkIdResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="openSession">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="openSessionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="openSessionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="closeSession">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="closeSessionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="closeSessionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createClaim">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createClaimRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createClaimResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reversalByArn">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reversalByArnRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reversalByArnResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findSuperCase">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findSuperCaseRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findSuperCaseResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reOpenClaim">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reOpenClaimRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reOpenClaimResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="createMiscFee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createMiscFeeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createMiscFeeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="reverseItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="reverseItemRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="reverseItemResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="cancelEvent">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="cancelEventRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="cancelEventResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findClaim">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findClaimRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findClaimResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="replyItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="replyItemRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="replyItemResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="changeClaimType">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="changeClaimTypeRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="changeClaimTypeResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findClearingRecordByCbkId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findClearingRecordByCbkIdRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findClearingRecordByCbkIdResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findOriginalTransactionCbkIdByClaimCbkId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findOriginalTransactionCbkIdByClaimCbkIdRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findOriginalTransactionCbkIdByClaimCbkIdResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="adjustCardHolder">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="adjustCardHolderRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="adjustCardHolderResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="repostFraudTransaction">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="repostFraudTransactionRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="repostFraudTransactionResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="closeClaim">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="closeClaimRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="closeClaimResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeOff">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="writeOffRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="writeOffResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sendItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sendItemRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.dcms.cartasi.it" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sendItemResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://tst.vaservices.eu/cbk-qa1/services/Dcms" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DcmsLoggedService">
+
+      <wsdl:port binding="impl:DcmsSoapBinding" name="Dcms">
+
+         <wsdlsoap:address location="https://tst.vaservices.eu/cbk-qa1/services/Dcms"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

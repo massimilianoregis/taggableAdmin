@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://DettaglioCartaDom.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://SharedDom.schema.bmed.it/v1" xmlns:tns="http://DettaglioCartaDom.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="SharedDomSchema_v1.0.xsd" namespace="http://SharedDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="condizioneScontoCanoneCartaDTO" type="tns:condizioneScontoCanoneCartaDTO"/>
+
+  <xs:element name="fotoCartaClienteDTO" type="tns:fotoCartaClienteDTO"/>
+
+  <xs:element name="giornoRicaricaDTO" type="tns:giornoRicaricaDTO"/>
+
+  <xs:element name="periodicitaDTO" type="tns:periodicitaDTO"/>
+
+  <xs:element name="ricaricaAutomaticaDTO" type="tns:ricaricaAutomaticaDTO"/>
+
+  <xs:element name="taglioImportoDTO" type="tns:taglioImportoDTO"/>
+
+  <xs:element name="tipoCartaDTO" type="tns:tipoCartaDTO"/>
+
+  <xs:element name="tipoDispositivoCartaDTO" type="tns:tipoDispositivoCartaDTO"/>
+
+  <xs:complexType name="fotoCartaClienteDTO">
+      <xs:sequence>
+         <xs:element name="codiceCliente" type="xs:string" nillable="true"/>
+         <xs:element name="codiceFotoCartaCliente" type="xs:string" nillable="true"/>
+         <xs:element name="dataFineValidita" type="xs:dateTime" nillable="true"/>
+         <xs:element name="dataInizioValidita" type="xs:dateTime" nillable="true"/>
+         <xs:element name="descrizionePercorsoFoto" type="xs:string" nillable="true"/>
+         <xs:element name="nomeFoto" type="xs:string" nillable="true"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ricaricaAutomaticaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="giornoRicarica" type="tns:giornoRicaricaDTO" nillable="true"/>
+               <xs:element name="periodicita" type="tns:periodicitaDTO" nillable="true"/>
+               <xs:element name="taglioImporto" type="tns:taglioImportoDTO" nillable="true"/>
+               <xs:element name="tipoCarta" type="tns:tipoCartaDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="giornoRicaricaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceGiornoRicarica" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneGiornoRicarica" type="xs:string" nillable="true"/>
+               <xs:element name="valoreCodiceGiornoRicarica" type="xs:long" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="periodicitaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codicePeriodicita" type="xs:string" nillable="true"/>
+               <xs:element name="descrizionePeriodicita" type="xs:string" nillable="true"/>
+               <xs:element name="valoreCodiceSistemaTarget" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="taglioImportoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceTaglioImporto" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneTaglioImporto" type="xs:string" nillable="true"/>
+               <xs:element name="valoreTaglioImporto" type="xs:decimal" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="tipoCartaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceTipoCarta" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneTipoCarta" type="xs:string" nillable="true"/>
+               <xs:element name="flagAbbinamentoFoto" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagCreazioneNuovaPosizione" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagOpzioneRicaricaAutomatica" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRevolving" type="xs:boolean" nillable="true"/>
+               <xs:element name="tipoDispositivoCarta" type="tns:tipoDispositivoCartaDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="tipoDispositivoCartaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceTipoDispositivoCarta" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneTipoDispositivoCarta" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="condizioneScontoCanoneCartaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceTipoCondizioneScontoCanoneCarta" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneTipoCondizioneScontoCanoneCarta" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

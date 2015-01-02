@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://api.wsclient.bolloAuto.osb.be.it" xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://www.bea.com/wli/sb/context" xmlns:ns3="http://api.wsclient.sicurezza.osb.be.it" xmlns:tns="http://api.wsclient.bolloAuto.osb.be.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://www.bea.com/wli/sb/context" schemaLocation="BolloAutoService_schema1.xsd"/>
+
+  <xs:import namespace="http://schemas.xmlsoap.org/soap/envelope/" schemaLocation="BolloAutoService_schema2.xsd"/>
+
+  <xs:import namespace="http://api.wsclient.sicurezza.osb.be.it" schemaLocation="BolloAutoService_schema3.xsd"/>
+
+  <xs:element name="CercaVeicoloRequest" type="tns:CercaVeicoloRequest"/>
+
+  <xs:element name="CercaVeicoloResponse" type="tns:CercaVeicoloResponse"/>
+
+  <xs:element name="MWFaultException" type="tns:MWFaultException"/>
+
+  <xs:element name="Veicolo" type="tns:Veicolo"/>
+
+  <xs:element name="aggiungiTagVeicolo" type="tns:aggiungiTagVeicolo"/>
+
+  <xs:element name="aggiungiTagVeicoloResponse" type="tns:aggiungiTagVeicoloResponse"/>
+
+  <xs:element name="cercaVeicolo" type="tns:cercaVeicolo"/>
+
+  <xs:element name="cercaVeicoloResponse" type="tns:cercaVeicoloResponse"/>
+
+  <xs:element name="confermaBollo" type="tns:confermaBollo"/>
+
+  <xs:element name="confermaBolloResponse" type="tns:confermaBolloResponse"/>
+
+  <xs:element name="listaTag" type="tns:listaTag"/>
+
+  <xs:element name="listaTagResponse" type="tns:listaTagResponse"/>
+
+  <xs:element name="listaTipologieVeicolo" type="tns:listaTipologieVeicolo"/>
+
+  <xs:element name="listaTipologieVeicoloResponse" type="tns:listaTipologieVeicoloResponse"/>
+
+  <xs:element name="pagaBollo" type="tns:pagaBollo"/>
+
+  <xs:element name="pagaBolloResponse" type="tns:pagaBolloResponse"/>
+
+  <xs:element name="rimuoviTagVeicolo" type="tns:rimuoviTagVeicolo"/>
+
+  <xs:element name="rimuoviTagVeicoloResponse" type="tns:rimuoviTagVeicoloResponse"/>
+
+  <xs:complexType name="pagaBollo">
+    <xs:sequence>
+      <xs:element name="informazioni" type="tns:pagaBolloRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pagaBolloRequest">
+    <xs:complexContent>
+      <xs:extension base="tns:baseRequest">
+        <xs:sequence>
+          <xs:element name="regione" type="xs:string" minOccurs="0"/>
+          <xs:element name="codiceFiscale" type="xs:string" minOccurs="0"/>
+          <xs:element name="tipologia" type="xs:string" minOccurs="0"/>
+          <xs:element name="targaTelaio" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="baseRequest">
+    <xs:sequence>
+      <xs:element name="idCliente" type="xs:string" minOccurs="0"/>
+      <xs:element name="conto" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="pagaBolloResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:PagaBolloResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PagaBolloResponse">
+    <xs:complexContent>
+      <xs:extension base="tns:operazioneResponse">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneResponse">
+    <xs:sequence>
+      <xs:element name="stato" type="tns:statoOperazione" minOccurs="0"/>
+      <xs:element name="proprietario" type="tns:proprietario" minOccurs="0"/>
+      <xs:element name="veicolo" type="tns:Veicolo" minOccurs="0"/>
+      <xs:element name="importo" type="tns:importo" minOccurs="0"/>
+      <xs:element name="dataAddebito" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+      <xs:element name="tags" type="tns:tag" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="numeroVersamento" type="xs:string" minOccurs="0"/>
+      <xs:element name="notifica" type="tns:notifica" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="statoOperazione">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string" minOccurs="0"/>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="proprietario">
+    <xs:sequence>
+      <xs:element name="residenza" type="tns:regione" minOccurs="0"/>
+      <xs:element name="codiceFiscale" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="regione">
+    <xs:sequence>
+      <xs:element name="code" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Veicolo">
+    <xs:sequence>
+      <xs:element name="TargaTelaio" type="xs:string" minOccurs="0"/>
+      <xs:element name="Tipologia" type="tns:tipologia" minOccurs="0"/>
+      <xs:element name="destinazioneUso" type="tns:destinazioneUso" minOccurs="0"/>
+      <xs:element name="alimentazione" type="tns:alimentazione" minOccurs="0"/>
+      <xs:element name="categoria" type="tns:categoria" minOccurs="0"/>
+      <xs:element name="dataImmatricolazione" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="classe" type="tns:classe" minOccurs="0"/>
+      <xs:element name="potenza" type="tns:potenza" minOccurs="0"/>
+      <xs:element name="peso" type="tns:peso" minOccurs="0"/>
+      <xs:element name="portata" type="tns:portata" minOccurs="0"/>
+      <xs:element name="tags" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="bollo" type="tns:bollo" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipologia">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="destinazioneUso">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="alimentazione">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="categoria">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="classe">
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="potenza">
+    <xs:sequence>
+      <xs:element name="value" type="xs:int"/>
+      <xs:element name="um" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="peso">
+    <xs:sequence>
+      <xs:element name="value" type="xs:float" minOccurs="0"/>
+      <xs:element name="um" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="portata">
+    <xs:sequence>
+      <xs:element name="value" type="xs:float" minOccurs="0"/>
+      <xs:element name="um" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="bollo">
+    <xs:sequence>
+      <xs:element name="scadenza" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="validita" type="xs:int"/>
+      <xs:element name="importo" type="tns:importo" minOccurs="0"/>
+      <xs:element name="riduzione" type="xs:float"/>
+      <xs:element name="sanzioni" type="tns:importo" minOccurs="0"/>
+      <xs:element name="interessi" type="tns:importo" minOccurs="0"/>
+      <xs:element name="esazione" type="tns:importo" minOccurs="0"/>
+      <xs:element name="totale" type="tns:importo" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="importo">
+    <xs:sequence>
+      <xs:element name="currency" type="xs:string" minOccurs="0"/>
+      <xs:element name="value" type="xs:float" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tag">
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+      <xs:element name="removable" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="notifica">
+    <xs:sequence>
+      <xs:element name="mails" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="presaVisione" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="MWFaultException">
+    <xs:sequence>
+      <xs:element name="faultInfo" minOccurs="0">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="faultcode" type="xs:string" form="qualified"/>
+            <xs:element name="faultstring" type="xs:string" form="qualified" minOccurs="0"/>
+            <xs:element name="detail" type="ns1:faultType" form="qualified"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rimuoviTagVeicolo">
+    <xs:sequence>
+      <xs:element name="veicolo" type="tns:addTagVeicoloRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="addTagVeicoloRequest">
+    <xs:sequence>
+      <xs:element name="tag" type="xs:string" minOccurs="0"/>
+      <xs:element name="targa" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rimuoviTagVeicoloResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="listaTipologieVeicolo">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="listaTipologieVeicoloResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:ListaTipologiaVeicoloResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ListaTipologiaVeicoloResponse">
+    <xs:sequence>
+      <xs:element name="tipologie" type="tns:tipologia" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cercaVeicolo">
+    <xs:sequence>
+      <xs:element name="cerca" type="tns:CercaVeicoloRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CercaVeicoloRequest">
+    <xs:sequence>
+      <xs:element name="valore" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cercaVeicoloResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:CercaVeicoloResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="CercaVeicoloResponse">
+    <xs:sequence>
+      <xs:element name="veicoli" type="tns:Veicolo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="aggiungiTagVeicolo">
+    <xs:sequence>
+      <xs:element name="veicolo" type="tns:addTagVeicoloRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="aggiungiTagVeicoloResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="listaTag">
+    <xs:sequence>
+      <xs:element name="utente" type="tns:baseRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="listaTagResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:ListaTagResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ListaTagResponse">
+    <xs:sequence>
+      <xs:element name="tag" type="tns:tag" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="confermaBollo">
+    <xs:sequence>
+      <xs:element name="conferma" type="tns:confirmRequest" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="confirmRequest">
+    <xs:sequence>
+      <xs:element name="regione" type="xs:string" minOccurs="0"/>
+      <xs:element name="codiceFiscale" type="xs:string" minOccurs="0"/>
+      <xs:element name="tipologia" type="xs:string" minOccurs="0"/>
+      <xs:element name="targa" type="xs:string" minOccurs="0"/>
+      <xs:element name="descrizione" type="xs:string" minOccurs="0"/>
+      <xs:element name="tags" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="notificaMail" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="presaVisione" type="xs:boolean"/>
+      <xs:element name="sicurezzaEstesa" type="ns3:SicurezzaEstesa" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="confermaBolloResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:ConfermaPagamentoResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="ConfermaPagamentoResponse">
+    <xs:complexContent>
+      <xs:extension base="tns:operazioneResponse">
+        <xs:sequence/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+

@@ -1,0 +1,139 @@
+
+<script language="JavaScript">
+
+function GeneratePassword() {
+
+    if (parseInt(navigator.appVersion) <= 3) {
+        alert("Sorry this only works in 4.0+ browsers");
+        return true;
+    }
+
+    var length=8;
+    var sPassword = "";
+ //   length = document.aForm.charLen.options[document.aForm.charLen.selectedIndex].value;
+
+    var noPunction = true;
+    var randomLength = false;
+
+    if (randomLength) {
+        length = Math.random();
+
+        length = parseInt(length * 100);
+        length = (length % 7) + 6
+    }
+
+
+    for (i=0; i < length; i++) {
+
+        numI = getRandomNum();
+        if (noPunction) { while (checkPunc(numI)) { numI = getRandomNum(); } }
+
+        sPassword = sPassword + String.fromCharCode(numI).toUpperCase();
+    }
+
+
+    return sPassword;
+}
+
+function getRandomNum() {
+
+    // between 0 - 1
+    var rndNum = Math.random()
+
+    // rndNum from 0 - 1000
+    rndNum = parseInt(rndNum * 1000);
+
+    // rndNum from 33 - 127
+    rndNum = (rndNum % 94) + 33;
+
+    return rndNum;
+}
+
+function checkPunc(num) {
+
+    if ((num >=33) && (num <=47)) { return true; }
+    if ((num >=58) && (num <=64)) { return true; }
+    if ((num >=91) && (num <=96)) { return true; }
+    if ((num >=123) && (num <=126)) { return true; }
+
+    return false;
+}
+
+</script>
+
+<div class="page page-order">
+	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span>Prezzo</strong>
+        	<span class="btn-right">			
+        		<span class="btn btn-info" ng-click="save()">Salva</span>
+        	</span>   
+        </div>
+        <div class="panel-body">
+        	<form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Name" ng-model="name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="descr" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="descr" placeholder="Description" ng-model="description">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass" class="col-sm-2 control-label">Pass</label>
+                            <div class="col-sm-10">
+                            	<div class="input-group">
+                                    
+                                    <input type="text" class="form-control" id="pas" placeholder="Password" ng-model="pass">
+                                    <span class="input-group-btn" ng-click="generate()">
+                                        <button class="btn btn-default" type="button">Generate!</button>
+                                    </span>
+                                </div>                                
+                            </div>
+                        </div>                        
+                    </form>             	 
+        </div>
+    </div>
+	
+
+
+	<div class="row">
+    <div class="col-md-6">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	        	<strong><span class="glyphicon glyphicon-th"></span>Users</strong>
+	        	
+	        </div>
+	        <div class="panel-body">
+	        	
+				 <table class="table table-striped">
+		            <thead>
+		                <tr>
+		                    <th>img</th>                    
+		                    <th>Name</th>		                    
+		                </tr>
+		            </thead>
+		            <tbody data-bind="source:admin.ordini.single.rows" data-template="prodotti">
+		            	<script id="prodotti" type="text/x-kendo-template">
+		                <tr style="cursor:pointer;">
+		                    <td><div data-bind="background:img" style="background-size:cover; border:solid 1px silver; border-radius:35px; width:35px; height:35px; margin:-8px"></div></td>		                    
+		                    <td data-bind="text:description"></td>		                    
+		                </tr>
+		                </script>
+		             
+		            </tbody>
+		        </table>
+		        
+	        </div>
+	    </div>
+	</div>
+	
+	
+	</div>
+
+</div>

@@ -1,0 +1,13 @@
+
+	[
+		{			
+		"name":"web",
+		"description":"prezzo e-commerce",
+		"pass":"FJDNY2"
+		},
+		{			
+		"name":"shop",
+		"description":"prezzo negozio",
+		"pass":"FJDNY2"
+		}
+	]

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" targetNamespace="http://OperazioneContoAppDom.service.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://DettaglioOperazioneDom.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:51:52 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:51:52 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="DettaglioOperazioneDomSchema_v1.0.xsd" namespace="http://DettaglioOperazioneDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="deleteOperazioneConto" nillable="true" type="ns1:idDettaglioOperazioneRequest"/>
+
+  <xs:element name="loadOperazioneConto" nillable="true" type="ns1:idDettaglioOperazioneRequest"/>
+
+  <xs:element name="loadOperazioneContoResponse" nillable="true" type="ns1:dettaglioOperazioneResponse"/>
+
+  <xs:element name="storeOperazioneConto" nillable="true" type="ns1:dettaglioOperazioneRequest"/>
+
+  <xs:element name="storeOperazioneContoResponse" nillable="true" type="ns1:idDettaglioOperazioneResponse"/>
+</xs:schema>

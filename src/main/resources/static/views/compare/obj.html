@@ -1,0 +1,8 @@
+<span ng-class="{nascosto:file.visible}">
+	<a ng-show="file.field" ng-click="file.pref()" href="" class="fa fa-reply" tooltip="Field"></a>
+	<a ng-show="file.property" ng-click="file.pref()" href="" class="fa fa-reply-all" tooltip="Property"></a>	
+	<i ng-show="file.openable" class="icon-plus-sign" tooltip="Open" ng-click="file.open()" ></i> {{file.name}} ({{file.type}})</span>	
+	<a ng-show="file.executable" ng-click="file.exe()" href="" class="fa fa-play" tooltip="Execute"></a> 
+	<a ng-show="file.compilable" href="" class="fa fa-code" tooltip="Compile"></a>
+	<a ng-show="file.gitable" href="" class="fa fa-code-fork" tooltip="Commit in git"></a>
+	<ul><li ng-repeat="file in file.list" ng-include="'views/compare/obj.html'"></li></ul>

@@ -1,0 +1,44 @@
+
+<style>
+	.btn-right
+		{
+		float: right;
+		margin-top: -6px;
+		}
+	.progressQta
+		{
+		width: 100px;
+		position: absolute;
+		left: 133px;
+		top: 31px;
+		background: white;
+		border: solid 1px black;
+		}
+</style>
+
+
+<div class="page page-orders">	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span> Users</strong>        	
+        </div>        
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                	<th>Img</th>
+                	<th>Name</th>
+                	<th>Mail</th>
+                    <th>Listino</th>                    
+                </tr>
+            </thead>
+            <tbody>
+            	   <tr ng-repeat="user in list" style="cursor:pointer;"> 
+                	<td><div style="background-image:url('{{user.avatar}}'); background-size:cover; border:solid 1px silver; border-radius:35px; width:35px; height:35px; margin:-8px"></div></td>                
+                    <td><A ng-href="#/users/user/{{user.mail}}">{{user.first_name}} {{user.last_name}}</A></td>
+                    <td><A ng-href="#/users/user/{{user.mail}}">{{user.mail}}</A></td>
+                    <td>{{user.pricing}}</td>
+                </tr>                         
+            </tbody>
+        </table>
+    </div>    
+</div>	

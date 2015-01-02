@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://MomGestionePraticaBean.schema.bmed.it/v2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://MomGestionePraticaBean.schema.bmed.it/v2">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xs:complexType name="anagOperzIdDto">
+      <xs:sequence>
+         <xs:element name="codModPrat" type="xs:long" minOccurs="0"/>
+         <xs:element name="codOperzMod" type="xs:long" minOccurs="0"/>
+         <xs:element name="identvoPrat" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="anagOperzDto">
+      <xs:sequence>
+         <xs:element name="codSkillOperz" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceOperazioneEsterno" type="xs:string" minOccurs="0"/>
+         <xs:element name="codiceSurrogatoProdottoServ" type="xs:long" minOccurs="0"/>
+         <xs:element name="codiceTipoOperazioneSuProd" type="xs:string" minOccurs="0"/>
+         <xs:element name="flgOperzMaster" type="xs:string" minOccurs="0"/>
+         <xs:element name="idDto" type="tns:anagOperzIdDto" minOccurs="0"/>
+         <xs:element name="legmCausStatoOperzDto" type="tns:legmCausStatoOperzDto" minOccurs="0"/>
+         <xs:element name="legmSoggOperzsDto" type="tns:legmSoggOperzDto" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="legmCausStatoOperzDto">
+      <xs:sequence>
+         <xs:element name="domCausStatoOperzDto" type="tns:domCausStatoOperzDto" minOccurs="0"/>
+         <xs:element name="domFaseLavzDto" type="tns:domFaseLavzDto" minOccurs="0"/>
+         <xs:element name="domStatoOperzDto" type="tns:domStatoOperzDto" minOccurs="0"/>
+         <xs:element name="idDto" type="tns:legmCausStatoOperzIdDto" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="domCausStatoOperzDto">
+      <xs:sequence>
+         <xs:element name="codCausStatoOperz" type="xs:string" minOccurs="0"/>
+         <xs:element name="desCausStatoOperz" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="domFaseLavzDto">
+      <xs:sequence>
+         <xs:element name="codFaseLavz" type="xs:string" minOccurs="0"/>
+         <xs:element name="desFaseDiLavz" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="domStatoOperzDto">
+      <xs:sequence>
+         <xs:element name="codStatoOperz" type="xs:string" minOccurs="0"/>
+         <xs:element name="desStatoOperz" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="legmCausStatoOperzIdDto">
+      <xs:sequence>
+         <xs:element name="codCausStatoOperz" type="xs:string" minOccurs="0"/>
+         <xs:element name="codFaseLavz" type="xs:string" minOccurs="0"/>
+         <xs:element name="codStatoOperz" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="legmSoggOperzDto">
+      <xs:sequence>
+         <xs:element name="codClustCli" type="xs:short" minOccurs="0"/>
+         <xs:element name="domRuoloSoggDto" type="tns:domRuoloSoggDto" minOccurs="0"/>
+         <xs:element name="flgAccredStip" type="xs:string" minOccurs="0"/>
+         <xs:element name="flgAffidabSogg" type="xs:string" minOccurs="0"/>
+         <xs:element name="flgPrimaBanca" type="xs:string" minOccurs="0"/>
+         <xs:element name="flgPrimaFila" type="xs:string" minOccurs="0"/>
+         <xs:element name="idDto" type="tns:legmSoggOperzIdDto" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="domRuoloSoggDto">
+      <xs:sequence>
+         <xs:element name="codRuoloSogg" type="xs:int" minOccurs="0"/>
+         <xs:element name="desRuoloSogg" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="legmSoggOperzIdDto">
+      <xs:sequence>
+         <xs:element name="codModPrat" type="xs:long" minOccurs="0"/>
+         <xs:element name="codOperzMod" type="xs:long" minOccurs="0"/>
+         <xs:element name="codSoggPrat" type="xs:long" minOccurs="0"/>
+         <xs:element name="identvoPrat" type="xs:long" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,80 @@
+
+<script>
+	function responseController($scope,$routeParams)
+		{		
+		var code = $routeParams.code;
+		$scope.time=2;
+		$scope.dis=true;
+		$scope.enable=function()
+			{			
+			$scope.dis=false;			
+			}
+		$scope.load=function(code)
+			{			
+			if(code=="-1") return;
+			$.get("history/get",{code:code},function(data)
+				{							
+				$scope.response=data;							
+				
+				$scope.$apply();				
+				})
+			}
+		
+		$scope.response={};
+		$scope.save=function()
+			{
+			debugger;
+			$.post("history/add",
+				{
+				request:$scope.response.request.xml,
+				response:$scope.response.xml,
+				name:$scope.response.name
+				},function(){toastr.success("salvato")});
+			}
+		$scope.load(code);
+		}
+		
+		toastr.options = {"positionClass": "toast-bottom-right"};
+</script>
+<div class="page page-table" ng-controller="responseController">
+	
+	 <div class="row">
+        <div class="col-md-12" >
+			<div class="panel panel-default">
+	        	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Actions</strong></div>
+	         	<button class="btn btn-danger" ng-disabled="dis" ng-click="save()">Save</button>	         	
+	    	</div>
+    	</div>
+    </div>    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Response</strong></div>
+                <div class="panel-body">
+                	<input type="text" ng-model="response.request.name" ng-change="enable()" placeholder="name">
+                </div>
+            </div>            
+    	</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Response</strong></div>
+                <div class="panel-body">
+                	<textarea style="width:100%; height:400px" ng-model="response.xml" ng-change="enable()"></textarea>
+                </div>
+            </div>            
+    	</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Request</strong></div>
+                <div class="panel-body">
+                	<textarea style="width:100%; height:400px" ng-model="response.request.xml" ng-change="enable()"></textarea>
+                </div>
+            </div>
+    	</div>
+    </div>
+    
+</div>

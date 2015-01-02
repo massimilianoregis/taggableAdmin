@@ -1,0 +1,55 @@
+
+<style>
+	.btn-right
+		{
+		float: right;
+		margin-top: -6px;
+		}
+	.progressQta
+		{
+		width: 100px;
+		position: absolute;
+		left: 133px;
+		top: 31px;
+		background: white;
+		border: solid 1px black;
+		}
+</style>
+
+
+
+<div class="page page-table">
+	
+    <div class="panel panel-default" ng-repeat="wish in list">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span> {{wish.name}}</strong>        	        					        	
+        </div>
+        <div>
+	  		      	
+	        <table class="table table-striped">
+	            <thead>
+	                <tr>
+	                    <th>img</th>                    
+	                    <th>Name</th>
+	                    <th>Price</th>
+	                    <th>Base price</th>
+	                </tr>
+	            </thead>	           		       
+		        <tbody>
+		        	
+	            	<tr style="cursor:pointer;" ng-repeat="item in wish.list">
+	                    <td><div style="background-image:url('{{item.gallery[0].img}}');background-size:cover; border:solid 1px silver; border-radius:35px; width:35px; height:35px; margin:-8px"></div></td>	                    
+	                    <td><A ng-href="#/products/single/{{item.id}}">{{item.name}}</A></td>
+	                    <td><span class="label label-info">{{item.prices.web|currency:"&euro;"}}</span></td>
+	                    <td>{{item.prices.base|currency:"&euro;"}}</td>
+					</tr>
+					
+		        </tbody>		        
+	        </table>
+	       
+        </div>
+    </div>
+</div>	
+
+</div>
+

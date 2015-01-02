@@ -1,0 +1,169 @@
+<!--link rel="stylesheet" href="http://jhfrench.github.io/bootstrap-tree/bootstrap-combined.min.css"></link-->
+<script>
+	$(document).ready(tree);
+	function tree() {
+			$('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+			var obj = $('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch');
+			if(obj.attr("event")!=null) return;
+			obj.on('click', function (e) {
+				if($(this).parent().find("LI").size()==0) 
+					{
+					$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+					return;
+					}					
+		       // var children = $(this).parent('li.parent_li').find(' > ul > li');
+		        var children = $(this).parent('li.parent_li').find(' > ul');		        
+		        if (children.is(':visible')) {
+		    		children.hide('fast');
+		    		$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+		        }
+		        else {
+		    		children.show('fast');
+		    		$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+		        }
+		        e.stopPropagation();
+		    });
+		    obj.attr("event","click");
+		}
+	function filter(data,$scope)
+		{
+		data.directory=true;
+		data.exe=function()
+			{
+			$.get("compare/obj",{path:null,name:this.name},function(data)
+				{
+				menu.add({link:"#/admin/execute/"+data.id,name:data.name, icon:"fa-dashboard",color:"bg-danger"})
+				toastr.success("eseguito");	
+				},"json");			
+			}
+		data.pref = function()
+			{			
+			$scope.pref.push(this);
+			//$scope.$apply();
+			}
+		data.open = function()
+			{			
+			var act = this;
+			$.get("compare/obj",{path:act.path},function(dta)
+				{
+				for(var i in dta)
+					filter(dta[i],$scope);
+				act.list=dta;				
+				
+				setTimeout(tree,200);
+				$scope.$apply();								
+				});
+			}			
+		}
+	function fileControl($scope)
+		{
+			
+		var obj = 
+			{
+			load:function()
+				{				
+				$.get("compare/obj",{path:$scope.obj1.clss},function(data)
+					{			
+					for(var i in data)
+						filter(data[i],$scope);
+					
+					$scope.obj1.data=data;					
+					$scope.$apply();
+					setTimeout(tree,200);	
+					},"json");
+				$.get("compare/obj",{path:$scope.obj2.clss},function(data)
+					{			
+					for(var i in data)
+						filter(data[i],$scope);
+					
+					$scope.obj2.data=data;					
+					$scope.$apply();
+					setTimeout(tree,200);	
+					},"json");
+				}
+			};			
+		$scope.seeHidden=true;
+		$scope.pref=[]
+		$scope.load=obj.load;
+		
+		$scope.obj1=
+			{
+			clss:"java.lang.String",
+			change:function()
+				{
+				$scope.load()
+				}
+			}
+		$scope.obj2=
+			{
+			clss:"java.lang.String",
+			change:function()
+				{
+				$scope.load()
+				}
+			}
+		$scope.load();	
+		$scope.$watch("seeHidden",function(e)
+			{
+			
+			if(e)	$(".tree .nascosto").css("display","inline");
+			else	$(".tree .nascosto").css("display","none");
+			});
+		};
+</script>
+<style>
+	[role=tree] [class^="icon-"],[role=tree] [class*=" icon-"] {
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		line-height: 14px;
+		vertical-align: text-top;
+		background-image: url("http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/img/glyphicons-halflings.png");
+		
+		background-repeat: no-repeat;
+		margin-top: 1px;
+		}
+	.icon-folder-open {
+background-position: -408px -120px;
+width: 16px;
+}
+.icon-minus-sign {
+background-position: -24px -96px;
+}
+.icon-plus-sign {
+background-position: 0 -96px;
+}
+.visible	{opacity:1}
+.tree .nascosto	{opacity:.4;}
+</style>
+<div ng-controller="fileControl">
+
+<div class="page page-table"> 	
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Compare</strong></div>
+        <div class="panel-body">
+        	
+        	<DIV class=" col-md-6">
+            	<INPUT CLASS="form-control" TYPE="text" ng-model="obj1.clss" ng-change="obj1.change()"/>
+            
+	            <div class="tree well" style="max-height:500px;">
+	            	
+	            	<ul>
+	            		<li ng-repeat="file in obj1.data" ng-include="'views/compare/obj.html'"></li>
+	            	</ul>
+	            </div>
+           </DIV>
+            <DIV class=" col-md-6">
+            	<INPUT CLASS="form-control" TYPE="text" ng-model="obj2.clss" ng-change="obj2.change()"/>
+            
+	            <div class="tree well" style="max-height:500px;">
+	            	
+	            	<ul>
+	            		<li ng-repeat="file in obj2.data" ng-include="'views/compare/obj.html'"></li>
+	            	</ul>
+	            </div>
+           </DIV>
+        </div>
+    </section>
+</div>
+</div>

@@ -1,0 +1,80 @@
+
+<div class="page page-order">
+	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span>	{{first_name}} {{last_name}}</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	<form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Name" ng-value="first_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">Cognome</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="surname" placeholder="Surname" ng-value="last_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail" class="col-sm-2 control-label">Mail</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="mail" placeholder="Mail" ng-value="mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pricing" class="col-sm-2 control-label">Pricing</label>
+                            <div class="col-sm-10">                            	
+                                <input type="text" class="form-control" id="mail" placeholder="Mail" ng-value="pricing">
+                            </div>
+                        </div>
+                    </form>             	 
+        </div>
+    </div>
+	
+
+
+	<div class="row">
+    <div class="col-md-6">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	        	<strong><span class="glyphicon glyphicon-th"></span>Shopping...</strong>
+	        	
+	        </div>
+	        <div class="panel-body">
+	        	
+				<table class="table table-striped">
+		            <thead>
+		                <tr>
+		                	<th>Situation</th>
+		                    <th>Data</th>
+		                    <th>Price</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		            	   <tr ng-repeat="ordine in orders" style="cursor:pointer;" ng-click="ordine.select()"> 
+		                	<td>
+		                		<progress class="progressbar-xs">
+					                <bar value="consegna" type="success">{{consegna}}</bar>
+					                <bar value="20" type="warning"></bar>
+					                <bar value="20" type="danger"></bar>
+					            </progress>   
+					        </td>                   
+		                    <td>{{ordine.data}}</td>
+		                    <td><span class="label label-info">{{ordine.total|currency:"&euro;"}}</span></td>                    
+		                </tr>                         
+		            </tbody>
+		        </table>
+		        
+	        </div>
+	    </div>
+	</div>
+	
+	
+	</div>
+
+</div>

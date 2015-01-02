@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://MomGestionePraticaReq.schema.bmed.it/v2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://common.schema.bmed.it/v3" xmlns:ns1="http://MomGestionePraticaBean.schema.bmed.it/v2">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="MomGestionePraticaBeanSchema_v1.0.xsd" namespace="http://MomGestionePraticaBean.schema.bmed.it/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="AsiaSchema_v3.1.xsd" namespace="http://common.schema.bmed.it/v3" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:complexType name="anagOperzIdRequest">
+      <xs:complexContent>
+         <xs:extension base="ns2:baseBeRequest">
+            <xs:sequence>
+               <xs:element name="anagOperzIdDto" type="ns1:anagOperzIdDto"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="anagOperzRequest">
+      <xs:complexContent>
+         <xs:extension base="ns2:baseBeRequest">
+            <xs:sequence>
+               <xs:element name="anagOperzDto" type="ns1:anagOperzDto"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

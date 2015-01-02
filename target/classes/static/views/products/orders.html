@@ -1,0 +1,66 @@
+
+<style>
+	.btn-right
+		{
+		float: right;
+		margin-top: -6px;
+		}
+	.progressQta
+		{
+		width: 100px;
+		position: absolute;
+		left: 133px;
+		top: 31px;
+		background: white;
+		border: solid 1px black;
+		}
+</style>
+
+
+
+
+<div class="page page-orders">	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span>Orders</strong>        	
+        </div>
+        <!--table class="table table-striped">
+            <thead>
+                <tr>
+                	<th>Situation</th>
+                    <th>Data</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody data-bind="source:admin.ordini.list" data-template="orderslist">                         
+            </tbody>
+        </table-->
+        
+          <table class="table table-striped">
+            <thead>
+                <tr>
+                	<th>Situation</th>
+                    <th>Data</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+            	   <tr ng-repeat="ordine in list" style="cursor:pointer;" ng-click="ordine.select()"> 
+                	<td>
+                		<A ng-href="#/products/order/123">
+                		<progress class="progressbar-xs">
+			                <bar value="25" type="danger"></bar>
+			                <bar value="25" type="warning"></bar>
+			                <bar value="ordine.bar.spedito" type="orange"></bar>
+			                <bar value="ordine.bar.consegnato" type="success"></bar>
+			            </progress>
+			            </A>   
+			        </td>                   
+                    <td><A ng-href="#/products/order/123">{{ordine.data}}</A></td>
+                    <td><span class="label label-info">{{ordine.total|currency:"&euro;"}}</span></td>                    
+                </tr>                         
+            </tbody>
+        </table>
+    </div>    
+</div>	
+	

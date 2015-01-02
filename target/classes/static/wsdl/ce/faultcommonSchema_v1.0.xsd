@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" targetNamespace="http://fault.common.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://fault.common.schema.bmed.it/v1" xmlns:ns2="http://simpleType.common.schema.bmed.it/v1" xmlns:ns1="http://common.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="commonSchema_v1.0.xsd" namespace="http://common.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="simpleTypecommonSchema_v1.0.xsd" namespace="http://simpleType.common.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="BaseFaultType" nillable="true" type="tns:BaseFaultType"/>
+
+  <xs:complexType name="BaseFaultType">
+      <xs:sequence>
+         <xs:element name="testata" type="ns1:HeaderOutputType" form="qualified"/>
+         <xs:element name="codice" type="xs:string" form="qualified"/>
+         <xs:element name="messaggio" type="xs:string" form="qualified"/>
+         <xs:element name="layer" type="xs:string" form="qualified"/>
+         <xs:element name="technical" type="xs:boolean" form="qualified"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="SystemFaultType">
+      <xs:complexContent>
+         <xs:extension base="tns:BaseFaultType">
+            <xs:sequence>
+               <xs:element name="technical" type="xs:boolean" form="qualified"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BusinessFaultType">
+      <xs:complexContent>
+         <xs:extension base="tns:BaseFaultType">
+            <xs:sequence>
+               <xs:element name="technical" type="xs:boolean" form="qualified"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

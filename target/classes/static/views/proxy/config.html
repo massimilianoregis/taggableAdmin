@@ -1,0 +1,56 @@
+
+<script>
+	function configController($scope)
+		{
+		
+		$scope.load=function()
+			{					
+			$.get("stub/config",function(data)
+				{			
+				$scope.config=data;				
+				$scope.$apply();
+				})
+			}
+		$scope.save=function()
+			{
+			
+			$.get("stub/config/save",$scope.config);
+			}
+		$scope.response={};
+		$scope.load();
+		}
+</script>
+<div class="page page-table">
+
+    <div class="row">
+        <div class="col-md-12" data-ng-controller="configController">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Config</strong></div>
+                <div class="panel-body">
+	                
+	                <table class="table">
+		            <thead>
+		                <tr>                    
+		                    <th>From Url</th>
+		                    <th>To Url</th>		                    
+		                </tr>
+		            </thead>
+		            <tbody>
+		               <tr>
+		               	<td>http://172.16.70.182:8002/fd-be-osb-pratica-prj/(.*)</td>
+		               	<td>http://www.ddd.tt/$1</td>
+		               </tr>  
+		               <tr>
+		               	<td>http://172.16.70.182:8002/fd-be-osb-pratica-prj/(.*)</td>
+		               	<td>http://www.ddd.tt/$1</td>
+		               </tr>             
+		            </tbody>
+		        </table>
+	                
+                </div>
+            </div>
+            
+    	</div>
+    </div>
+    
+</div>

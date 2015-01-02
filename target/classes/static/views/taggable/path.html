@@ -1,0 +1,79 @@
+
+
+<style>
+
+#map_canvas {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+        }
+
+        #map_canvas {
+            position: relative;
+        }
+
+        .angular-google-map-container {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+</style>
+
+<div class="page page-groups">
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<strong><span class="glyphicon glyphicon-th"></span>Map</strong>
+		</div>
+		<div style="height:400px;">
+		
+			<div id="map_canvas" style="height: 100%;width: 100%;margin: 0px;">
+			    <ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" bounds="map.bounds">
+			        <ui-gmap-polyline models="randomMarkers" coords="'self'" icon="'icon'">
+			        </ui-gmap-polyline>
+			    </ui-gmap-google-map>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<strong><span class="glyphicon glyphicon-th"></span>Groups</strong>
+
+			<!--progressbar class="progressbar-xs progressQta" data-bind="attr:{value:admin.prodotti.levels.qta}" value="10" type="info"></progressbar-->
+
+
+			<SPAN class="btn-right"><INPUT TYPE="text" ng-model="name" />
+				<span class="btn btn-info" ng-click="addRandom()">Nuova</span></SPAN>
+		</div>
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<TH CLASS="nome">Nome</TH>
+						<TH CLASS="prezzo">Latitudine</TH>
+						<TH CLASS="prezzo">Longitudine</TH>
+						<TH CLASS="prezzo">Remove</TH>
+					</tr>
+				</thead>
+
+				<tbody>
+					<TR ng-repeat="item in randomMarkers">
+						<TD CLASS="nome">{{item.id}}</TD>
+						<TD CLASS="prezzo">{{item.latitude}}</TD>
+						<TD CLASS="prezzo">{{item.longitude}}</TD>
+						<TD><A ng-click="removeItem($index)">REMOVE</A></TD>
+					</TR>
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+	
+</div>
+
+

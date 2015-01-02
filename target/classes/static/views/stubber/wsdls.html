@@ -1,0 +1,113 @@
+<script>
+	function wsdlControl($scope)
+		{
+		var filter =function(data)
+			{
+			for(var i in data)
+				{
+				if(data[i].status=="pending")
+					data[i].state={
+							type:"label-warning",
+							txt:"Finding"
+							};
+				if(data[i].status=="confirmed")
+					data[i].state={
+							type:"label-success",
+							txt:"OK"
+							};
+				if(data[i].status=="not found")
+					data[i].state={
+							type:"label-danger",
+							txt:"KO"
+							};
+				data[i]["delete"]=function()
+					{					
+					$.get("wsdl/remove",{name:this.name},function()
+						{									
+						$scope.load();		
+						});										
+					};
+				}		
+			return data;
+			};
+			
+		var obj = 
+			{
+			load:function()
+				{				
+				$.get("wsdl/list",function(data)
+					{			
+					$scope.wsdls=filter(data);
+					$scope.$apply();			
+					},"json");
+				},
+			add:{
+				name:"",
+				url:"",
+				confirm:function()
+					{
+					$.get("wsdl/add",{name:this.name,url:this.url},function(data)
+						{
+						$scope.wsdls=filter(data);
+						$scope.$apply();	
+						});					
+					}
+			},
+			wsdls:[]
+			};
+		
+		$scope.load=obj.load;
+		$scope.add=obj.add;
+		$scope.wsdls=obj.wsdls;
+		$scope.load();
+		};
+</script>
+<div class="page page-table" ng-controller="wsdlControl">
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Wsdl"></span></strong>
+        	
+        </div>
+      
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Url</th>
+                    <th>Status</th>   
+                    <th>Del</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="wsdl in wsdls">
+                    <td></td>
+                    <td>{{wsdl.name}}</td>
+                    <td><A HREF="{{wsdl.url}}" TARGET="_blank">{{wsdl.url}}</A></td>
+                    <td><span class="label {{wsdl.state.type}}">{{wsdl.state.txt}}</span></td>
+                    <td><A ng-click="wsdl.delete()" class="fa fa-trash-o"></A></td>                    
+                </tr>                
+            </tbody>
+        </table>
+        
+         
+    </div>
+    
+    
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Add Wsdl</strong></div>
+        <div class="panel-body">
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputEmail2">Name</label>
+                    <input ng-model="add.name" type="text" class="form-control" id="exampleInputEmail2" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputPassword2">Url</label>
+                    <input ng-model="add.url" type="text" size="30" class="form-control" id="exampleInputPassword2" placeholder="http://www.domain.it/nome/service?wsdl">
+                </div>                
+                <button type="submit" class="btn btn-info" ng-click="add.confirm()">Add</button>
+            </form>              
+        </div>
+    </section>
+</div>

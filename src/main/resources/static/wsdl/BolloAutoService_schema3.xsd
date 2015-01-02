@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://api.wsclient.sicurezza.osb.be.it" xmlns:tns="http://api.wsclient.sicurezza.osb.be.it" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="PinPwd" type="tns:PinPwd"/>
+
+  <xs:element name="SicurezzaEstesa" type="tns:SicurezzaEstesa"/>
+
+  <xs:element name="TerzoCodice" type="tns:TerzoCodice"/>
+
+  <xs:complexType name="SicurezzaEstesa">
+    <xs:sequence>
+      <xs:element name="pinPwd1" type="tns:PinPwd" minOccurs="0"/>
+      <xs:element name="pinPwd2" type="tns:PinPwd" minOccurs="0"/>
+      <xs:element name="terzoCodice" type="tns:TerzoCodice" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="PinPwd">
+    <xs:sequence>
+      <xs:element name="pinPosizione" type="xs:string" minOccurs="0"/>
+      <xs:element name="pinPassword" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="TerzoCodice">
+    <xs:sequence>
+      <xs:element name="codiceSessioneSMS" type="xs:string" minOccurs="0"/>
+      <xs:element name="tokenSessione" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

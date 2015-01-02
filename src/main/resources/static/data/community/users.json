@@ -1,0 +1,23 @@
+[
+	{
+	"first_name":"name",
+	"last_name":"lastname",
+	"mail":"max@gmail.com",
+	"pricing":"myprice",
+	"avatar":"https://cdn2.iconfinder.com/data/icons/faceavatars/PNG/D04.png"
+	},
+	{
+	"first_name":"Michela",
+	"last_name":"Manesco",
+	"mail":"michela@gmail.com",
+	"pricing":"myprice",
+	"avatar":"http://icons.iconarchive.com/icons/hopstarter/superhero-avatar/256/Avengers-Black-Widow-icon.png"
+	},
+	{
+	"first_name":"Test",
+	"last_name":"Test",
+	"mail":"michela@gmail.com",
+	"pricing":"myprice",
+	"avatar":"https://gp5.googleusercontent.com/-AC6N5MPoBxM/AAAAAAAAAAI/AAAAAAAAAAA/XJYC-lDjv28/s48-c-k-no/photo.jpg"
+	}
+]

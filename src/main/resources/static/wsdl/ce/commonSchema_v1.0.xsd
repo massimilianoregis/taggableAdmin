@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://common.schema.bmed.it/v1" xmlns:ns1="http://simpleType.common.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://common.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="simpleTypecommonSchema_v1.0.xsd" namespace="http://simpleType.common.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:complexType name="HeaderOutputType">
+      <xs:sequence>
+         <xs:element name="idOperazioneRichiesta" type="tns:IdOperazioneType"/>
+         <xs:element name="idConversazione" type="xs:string"/>
+         <xs:element name="canale" type="ns1:CanaleType"/>
+         <xs:element name="codiceOperazioneRisposta" type="xs:string" nillable="true"/>
+         <xs:element name="timeStamp" type="xs:long"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="IdOperazioneType">
+      <xs:sequence>
+         <xs:element name="codiceApplicazioneChiamante" type="xs:string"/>
+         <xs:element name="codiceOperazione" type="xs:string" nillable="true"/>
+      </xs:sequence>
+  </xs:complexType>
+</xs:schema>

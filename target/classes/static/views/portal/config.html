@@ -1,0 +1,184 @@
+
+<script>
+function configCtrl($scope,$routeParams)
+	{		
+	$scope.kiosk=true;
+	
+	$scope.name = $routeParams.portal;
+	
+	macumba.control.check("$m",function()
+		{
+		
+		//alert($m[$scope.name].name());
+		});
+	//$scope.user = $m.admin.users.user;
+	//$scope.listini= $m.admin.listini.list;		
+	}
+</script>
+
+<div class="page page-order" ng-controller="configCtrl">
+	<div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span> Configurazione - {{name}}</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">Nome Negozio</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" placeholder="Name" ng-value="user.name">
+                </div>
+            </div>
+        </div>
+   </div>
+	
+	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span> Configurazione - {{name}}</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	<form class="form-horizontal" role="form">
+        				<div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Kiosk mode</label>
+                            <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" ng-model="kiosk"><i></i></label>
+                            </div>
+                        </div>                        
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">E-commerce</label>
+                           <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" ng-model="commerce"><i></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail" class="col-sm-2 control-label">Blog</label>
+                            <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" ng-model="blog"><i></i></label>
+                            </div>
+                        </div>                       
+                        <div class="form-group">
+                            <label for="pricing" class="col-sm-2 control-label">Chat</label>
+                            <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" ng-model="chat"><i></i></label>
+                            </div>
+                        </div>
+                    </form>             	 
+        </div>
+    </div>
+	
+<div class="panel panel-default" ng-show="kiosk">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span> Societ&agrave;</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	<form class="form-horizontal" role="form">        				
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Ragione Sociale</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="" ng-model="user.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">Indirizzo</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="surname" placeholder="" ng-model="user.surname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail" class="col-sm-2 control-label">Partita iva</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="mail" placeholder="" ng-model="user.mail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pricing" class="col-sm-2 control-label">REA</label>
+                            <div class="col-sm-10">                            	
+                                <input type="text" class="form-control" id="mail" placeholder="" ng-model="user.pricing.name">
+                            </div>
+                        </div>
+                    </form>             	 
+        </div>
+    </div>
+    
+     <div class="panel panel-default" ng-show="commerce">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span> E-Commerce</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	<form class="form-horizontal" role="form">        				
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Paypal mail</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Name" ng-value="user.name">
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Numero Prodotti</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Name" ng-value="user.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Numero Categorie</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Name" ng-value="user.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Numero Listini</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Name" ng-value="user.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">Multilistino</label>
+                            <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" checked><i></i></label>
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">Wishlist</label>
+                            <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" checked><i></i></label>
+                            </div>
+                        </div>  
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">Acquisto sociale</label>
+                            <div class="col-sm-10">
+                                <label class="switch"><input type="checkbox" checked><i></i></label>
+                            </div>
+                        </div>                       
+                    </form>             	 
+        </div>
+    </div>
+
+    
+	 <div class="panel panel-default" ng-show="blog	">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"> </span> Kiosk</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	<form class="form-horizontal" role="form">        				
+                        <div class="form-group">
+                            <label for="name" class="col-sm-2 control-label">Listino</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="name" placeholder="Listino" ng-value="user.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname" class="col-sm-2 control-label">Pagamento</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="surname" placeholder="Contanti" ng-value="user.surname">
+                            </div>
+                        </div>                      
+                    </form>             	 
+        </div>
+    </div>
+
+	
+</div>

@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://SharedProdottoDom.schema.bmed.it/v1" xmlns:tns="http://SharedProdottoDom.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://AnagraficaClienteDom.schema.bmed.it/v1" xmlns:ns2="http://SharedDom.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="AnagraficaClienteDomSchema_v1.0.xsd" namespace="http://AnagraficaClienteDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="SharedDomSchema_v1.0.xsd" namespace="http://SharedDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="accreditoDTO" type="tns:accreditoDTO"/>
+
+  <xs:element name="agevolazioneDTO" type="tns:agevolazioneDTO"/>
+
+  <xs:element name="beneficioDTO" type="tns:beneficioDTO"/>
+
+  <xs:element name="canaleCollocamentoDTO" type="tns:canaleCollocamentoDTO"/>
+
+  <xs:element name="clusterClienteDTO" type="tns:clusterClienteDTO"/>
+
+  <xs:element name="condizioneCanaleCollocamentoDTO" type="tns:condizioneCanaleCollocamentoDTO"/>
+
+  <xs:element name="condizioneClusterClienteDTO" type="tns:condizioneClusterClienteDTO"/>
+
+  <xs:element name="condizioneContoDTO" type="tns:condizioneContoDTO"/>
+
+  <xs:element name="condizioneProfilazioneDTO" type="tns:condizioneProfilazioneDTO"/>
+
+  <xs:element name="contoCorrenteDTO" type="tns:contoCorrenteDTO"/>
+
+  <xs:element name="dettaglioPrezzoDTO" type="tns:dettaglioPrezzoDTO"/>
+
+  <xs:element name="giacenzaDTO" type="tns:giacenzaDTO"/>
+
+  <xs:element name="monointestatoDTO" type="tns:monointestatoDTO"/>
+
+  <xs:element name="patrimonioDTO" type="tns:patrimonioDTO"/>
+
+  <xs:element name="prodottoDTO" type="tns:prodottoDTO"/>
+
+  <xs:element name="promozioneDTO" type="tns:promozioneDTO"/>
+
+  <xs:element name="scontoDTO" type="tns:scontoDTO"/>
+
+  <xs:element name="tipoOperazioneSuOpzioneDTO" type="tns:tipoOperazioneSuOpzioneDTO"/>
+
+  <xs:element name="youngDTO" type="tns:youngDTO"/>
+
+  <xs:complexType name="prodottoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="barCode" type="xs:string" nillable="true"/>
+               <xs:element name="clienti" type="ns1:clienteBaseDTO" nillable="true" maxOccurs="unbounded"/>
+               <xs:element name="code" type="xs:string"/>
+               <xs:element name="detailDescription" type="xs:string" nillable="true"/>
+               <xs:element name="dettaglioPrezzi" type="tns:dettaglioPrezzoDTO" nillable="true" maxOccurs="unbounded"/>
+               <xs:element name="gruppoComputo" type="xs:int" nillable="true"/>
+               <xs:element name="locked" type="xs:boolean" nillable="true"/>
+               <xs:element name="numerositaMax" type="xs:int" nillable="true"/>
+               <xs:element name="numerositaMin" type="xs:int" nillable="true"/>
+               <xs:element name="operazioneSuOpzione" type="tns:tipoOperazioneSuOpzioneDTO" nillable="true"/>
+               <xs:element name="quantita" type="xs:int" nillable="true"/>
+               <xs:element name="quantitaIniziale" type="xs:int" nillable="true"/>
+               <xs:element name="quantitaMax" type="xs:int" nillable="true"/>
+               <xs:element name="selectable" type="xs:boolean" nillable="true"/>
+               <xs:element name="selected" type="xs:boolean" nillable="true"/>
+               <xs:element name="shortDescription" type="xs:string" nillable="true"/>
+               <xs:element name="suggested" type="xs:boolean" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dettaglioPrezzoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="beneficio" type="tns:beneficioDTO" nillable="true"/>
+               <xs:element name="description" type="xs:string" nillable="true"/>
+               <xs:element name="id" type="xs:string"/>
+               <xs:element name="price" type="xs:decimal"/>
+               <xs:element name="sconto" type="tns:scontoDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="beneficioDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:condizioneProfilazioneDTO">
+            <xs:sequence>
+               <xs:element name="code" type="xs:string"/>
+               <xs:element name="dataFine" type="xs:dateTime"/>
+               <xs:element name="dataInizio" type="xs:dateTime"/>
+               <xs:element name="mainDescription" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="condizioneProfilazioneDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="description" type="xs:string" nillable="true"/>
+               <xs:element name="flagDomanda" type="xs:boolean" nillable="true"/>
+               <xs:element name="id" type="xs:string" nillable="true"/>
+               <xs:element name="valutazioneSuIntervallo" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="condizioneCanaleCollocamentoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:condizioneProfilazioneDTO">
+            <xs:sequence>
+               <xs:element name="canaleCollocamento" type="tns:canaleCollocamentoDTO"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="canaleCollocamentoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="description" type="xs:string" nillable="true"/>
+               <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="condizioneClusterClienteDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:condizioneProfilazioneDTO">
+            <xs:sequence>
+               <xs:element name="clusterCliente" type="tns:clusterClienteDTO"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="clusterClienteDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="description" type="xs:string" nillable="true"/>
+               <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="condizioneContoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:condizioneProfilazioneDTO">
+            <xs:sequence>
+               <xs:element name="tipoConto" type="xs:string"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="promozioneDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:beneficioDTO">
+            <xs:sequence>
+               <xs:element name="detailCode" type="xs:string"/>
+               <xs:element name="detailDescription" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="agevolazioneDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:beneficioDTO">
+            <xs:sequence>
+               <xs:element name="detailCode" type="xs:string"/>
+               <xs:element name="detailDescription" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="monointestatoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:condizioneProfilazioneDTO">
+            <xs:sequence>
+               <xs:element name="monointestato" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="youngDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:beneficioDTO">
+            <xs:sequence>
+               <xs:element name="eta" type="xs:int"/>
+               <xs:element name="monointestato" type="tns:monointestatoDTO"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="giacenzaDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:beneficioDTO">
+            <xs:sequence>
+               <xs:element name="value" type="xs:decimal"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="patrimonioDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:beneficioDTO">
+            <xs:sequence>
+               <xs:element name="value" type="xs:decimal"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="accreditoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:beneficioDTO">
+            <xs:sequence>
+               <xs:element name="accredito" type="xs:boolean"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="scontoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="dataFine" type="xs:dateTime"/>
+               <xs:element name="dataInizio" type="xs:dateTime"/>
+               <xs:element name="price" type="xs:decimal"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="tipoOperazioneSuOpzioneDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="description" type="xs:string" nillable="true"/>
+               <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="contoCorrenteDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:prodottoDTO">
+            <xs:sequence>
+               <xs:element name="numeroContoCorrente" type="xs:string"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,50 @@
+
+<style>
+	.btn-right
+		{
+		float: right;
+		margin-top: -6px;
+		}
+	.progressQta
+		{
+		width: 100px;
+		position: absolute;
+		left: 133px;
+		top: 31px;
+		background: white;
+		border: solid 1px black;
+		}
+</style>
+
+
+<div class="page page-table">
+
+	
+    <div class="panel panel-default">        
+        <div>
+	  		      	
+	        <table class="table table-striped">
+	            <thead>
+	                <tr>	                                       
+	                    <th>Name</th>
+	                    <th>Param</th>
+	                    <th>Result</th>
+	                </tr>
+	            </thead>	           		       
+		        <tbody>
+		        	
+	            	<tr style="cursor:pointer;" ng-repeat="item in test">
+	                    <td>{{item.name}}</td>	                    
+	                    <td><A ng-click="item.call()">Call</A></td>
+	                    <td></td>	                    
+					</tr>
+					
+		        </tbody>		        
+	        </table>
+	       
+        </div>
+    </div>
+</div>	
+
+</div>
+

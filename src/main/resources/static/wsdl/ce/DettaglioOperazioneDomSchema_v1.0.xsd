@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://DettaglioOperazioneDom.schema.bmed.it/v1" xmlns:ns6="http://SharedProdottoDom.schema.bmed.it/v1" xmlns:tns="http://DettaglioOperazioneDom.schema.bmed.it/v1" xmlns:ns7="http://DettaglioDossierTitoliDom.schema.bmed.it/v1" xmlns:ns2="http://MomGestionePraticaReq.schema.bmed.it/v2" xmlns:ns8="http://DettaglioCartaDom.schema.bmed.it/v1" xmlns:ns4="http://DettaglioContoDom.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://MomGestionePraticaBean.schema.bmed.it/v2" xmlns:ns3="http://SharedDom.schema.bmed.it/v1" xmlns:ns5="http://AnagraficaClienteDom.schema.bmed.it/v1" xmlns:ns9="http://DettaglioPolizzaDom.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="MomGestionePraticaBeanSchema_v1.0.xsd" namespace="http://MomGestionePraticaBean.schema.bmed.it/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="MomGestionePraticaReqSchema_v1.0.xsd" namespace="http://MomGestionePraticaReq.schema.bmed.it/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="SharedDomSchema_v1.0.xsd" namespace="http://SharedDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="DettaglioContoDomSchema_v1.0.xsd" namespace="http://DettaglioContoDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="AnagraficaClienteDomSchema_v1.0.xsd" namespace="http://AnagraficaClienteDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="SharedProdottoDomSchema_v1.0.xsd" namespace="http://SharedProdottoDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="DettaglioDossierTitoliDomSchema_v1.0.xsd" namespace="http://DettaglioDossierTitoliDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="DettaglioCartaDomSchema_v1.0.xsd" namespace="http://DettaglioCartaDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="DettaglioPolizzaDomSchema_v1.0.xsd" namespace="http://DettaglioPolizzaDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="contrattoConsolidatoDTO" type="tns:contrattoConsolidatoDTO"/>
+
+  <xs:element name="dettaglioOperazione" type="tns:dettaglioOperazione"/>
+
+  <xs:element name="dettaglioOperazioneExternalDTOWrapper" type="tns:dettaglioOperazioneExternalDTOWrapper"/>
+
+  <xs:element name="dettaglioOperazioneExternalRequestWrapper" type="tns:dettaglioOperazioneExternalRequestWrapper"/>
+
+  <xs:element name="dettaglioOperazioneRequest" type="tns:dettaglioOperazioneRequest"/>
+
+  <xs:element name="dettaglioOperazioneResponse" type="tns:dettaglioOperazioneResponse"/>
+
+  <xs:element name="idDettaglioOperazioneExternalDTOWrapper" type="tns:idDettaglioOperazioneExternalDTOWrapper"/>
+
+  <xs:element name="idDettaglioOperazioneRequest" type="tns:idDettaglioOperazioneRequest"/>
+
+  <xs:element name="idDettaglioOperazioneResponse" type="tns:idDettaglioOperazioneResponse"/>
+
+  <xs:element name="operazioneAperturaContoDTO" type="tns:operazioneAperturaContoDTO"/>
+
+  <xs:element name="operazioneAperturaDossierTitoliDTO" type="tns:operazioneAperturaDossierTitoliDTO"/>
+
+  <xs:element name="operazioneAttivazioneServizioPortacontoDTO" type="tns:operazioneAttivazioneServizioPortacontoDTO"/>
+
+  <xs:element name="operazioneEmissioneCarnetAssegniDTO" type="tns:operazioneEmissioneCarnetAssegniDTO"/>
+
+  <xs:element name="operazioneEmissioneCartaDTO" type="tns:operazioneEmissioneCartaDTO"/>
+
+  <xs:element name="operazioneEmissioneCartaSiDTO" type="tns:operazioneEmissioneCartaSiDTO"/>
+
+  <xs:element name="operazioneRichiestaCodiceSicurezzaDTO" type="tns:operazioneRichiestaCodiceSicurezzaDTO"/>
+
+  <xs:element name="operazioneRichiestaFidoDTO" type="tns:operazioneRichiestaFidoDTO"/>
+
+  <xs:element name="operazioneSottoscrizionePolizzaProtezioneDTO" type="tns:operazioneSottoscrizionePolizzaProtezioneDTO"/>
+
+  <xs:complexType name="idDettaglioOperazioneRequest">
+      <xs:complexContent>
+         <xs:extension base="ns3:genericRequest">
+            <xs:sequence>
+               <xs:element name="anagOperzIdRequest" type="ns2:anagOperzIdRequest" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dettaglioOperazioneRequest">
+      <xs:complexContent>
+         <xs:extension base="ns3:persistenceRequest">
+            <xs:sequence>
+               <xs:element name="dettaglioOperazioneExternalReqWrapper" type="tns:dettaglioOperazioneExternalRequestWrapper" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dettaglioOperazioneExternalRequestWrapper">
+      <xs:complexContent>
+         <xs:extension base="ns3:basicDTO">
+            <xs:sequence>
+               <xs:element name="anagOperzRequest" type="ns2:anagOperzRequest"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneAperturaContoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="anagOperzId" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="codiceIbanAbiContoPrenotato" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCabContoPrenotato" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCin1ContoPrenotato" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCin2ContoPrenotato" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanPaeseContoPrenotato" type="xs:string" nillable="true"/>
+               <xs:element name="codiceModalitaContattoBanca" type="xs:string" nillable="true"/>
+               <xs:element name="codiceNdgCointestazione" type="xs:long" nillable="true"/>
+               <xs:element name="codiceScopoRapporto" type="xs:string" nillable="true" maxOccurs="unbounded"/>
+               <xs:element name="codiceServizioAlertSicurezza" type="xs:string" nillable="true"/>
+               <xs:element name="codiceTipoBloccoRapporto" type="xs:string" nillable="true"/>
+               <xs:element name="dataAperturaContoCorrente" type="xs:dateTime" nillable="true"/>
+               <xs:element name="flagAttivazioneDelega" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagContoTecnico" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagInvioComunicazioniCartacee" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRicezioneLetteraManleva" type="xs:boolean" nillable="true"/>
+               <xs:element name="importoAccreditoStipendioDichiarato" type="xs:decimal" nillable="true"/>
+               <xs:element name="importoTotaleVersamentoAssegniBancari" type="xs:decimal" nillable="true"/>
+               <xs:element name="importoTotaleVersamentoAssegniCircolari" type="xs:decimal" nillable="true"/>
+               <xs:element name="modalitaContattoBanca" type="ns4:modalitaContattoBancaDTO" nillable="true"/>
+               <xs:element name="nickNameConto" type="xs:string" nillable="true"/>
+               <xs:element name="numeroFaxLetteraManleva" type="xs:string" nillable="true"/>
+               <xs:element name="numeroRapportoContoCorrente" type="xs:string" nillable="true"/>
+               <xs:element name="numeroRapportoContoPrenotato" type="xs:string" nillable="true"/>
+               <xs:element name="numeroRapportoRete" type="xs:string" nillable="true"/>
+               <xs:element name="quantitaAssegniBancariVersati" type="xs:long" nillable="true"/>
+               <xs:element name="quantitaAssegniCircolariVersati" type="xs:long" nillable="true"/>
+               <xs:element name="rete" type="ns4:reteDTO" nillable="true"/>
+               <xs:element name="scopoRapporto" type="ns4:scopoRapportoDTO" nillable="true" maxOccurs="unbounded"/>
+               <xs:element name="servizioAlertSicurezza" type="ns4:servizioAlertSicurezzaDTO" nillable="true"/>
+               <xs:element name="sottocategoriaConto" type="ns4:sottocategoriaContoDTO" nillable="true"/>
+               <xs:element name="tipoBloccoRapporto" type="ns4:tipoBloccoRapportoDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dettaglioOperazione">
+      <xs:complexContent>
+         <xs:extension base="ns1:anagOperzDto">
+            <xs:sequence>
+               <xs:element name="prodotto" type="ns6:prodottoDTO" nillable="true"/>
+               <xs:element name="tipo" type="tns:tipoDettaglioEnum" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneAperturaDossierTitoliDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="codiceNdgCointestazione" type="xs:long" nillable="true"/>
+               <xs:element name="flagAperturaContoInDollariUsa" type="xs:boolean" nillable="true"/>
+               <xs:element name="numeroRapportoDossierTitoli" type="xs:string" nillable="true"/>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="opzioneFiscaleDossierTitoli" type="ns7:opzioneFiscaleDossierTitoliDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneAttivazioneServizioPortacontoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="codiceAbiDossierTitoliOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceCabDossierTitoliOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanAbiContoBM" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanAbiContoBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCabContoBM" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCabContoBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCin1ContoBM" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCin1ContoBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCin2ContoBM" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanCin2ContoBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanNumeroContoBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanPaeseContoBM" type="xs:string" nillable="true"/>
+               <xs:element name="codiceIbanPaeseContoBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="contrattoContoConsolidatoDto" type="tns:contrattoConsolidatoDTO" nillable="true"/>
+               <xs:element name="contrattoDossierTitoliConsolidatoDto" type="tns:contrattoConsolidatoDTO" nillable="true"/>
+               <xs:element name="flagAccreditoStipendio" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagMezziPagamentoAttiviContoOrigine" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRichiestaEstinzioneContoOrigine" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRichiestaTrasferimentoBonifici" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRichiestaTrasferimentoDossierTitoli" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRichiestaTrasferimentoRid" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagRichiestaTrasferimentoSaldo" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagTitoliModuloB20" type="xs:boolean" nillable="true"/>
+               <xs:element name="numeroDossierTitoliBancaOrigine" type="xs:string" nillable="true"/>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="operazioneAperturaDossierTitolIdiDto" type="ns1:anagOperzIdDto" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="contrattoConsolidatoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns3:basicDTO">
+            <xs:sequence>
+               <xs:element name="contr_n" type="xs:string" nillable="true"/>
+               <xs:element name="prod_C" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneEmissioneCarnetAssegniDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="contrattoConsolidato" type="tns:contrattoConsolidatoDTO" nillable="true"/>
+               <xs:element name="flagCarnetOro" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagLavorazioneInSede" type="xs:boolean" nillable="true"/>
+               <xs:element name="importoQuotaEmissione" type="xs:decimal" nillable="true"/>
+               <xs:element name="numeroLibrettiAssegniRichiesti" type="xs:long" nillable="true"/>
+               <xs:element name="numeroPrimoAssegno" type="xs:string" nillable="true"/>
+               <xs:element name="numeroUltimoAssegno" type="xs:string" nillable="true"/>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneEmissioneCartaDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="codiceDispositivoCarta" type="xs:string" nillable="true"/>
+               <xs:element name="contrattoConsolidato" type="tns:contrattoConsolidatoDTO" nillable="true"/>
+               <xs:element name="denominazioneCarta" type="xs:string" nillable="true"/>
+               <xs:element name="flagCartaSostitutiva" type="xs:boolean" nillable="true"/>
+               <xs:element name="flagLavorazioneSede" type="xs:boolean" nillable="true"/>
+               <xs:element name="fotoCartaCliente" type="ns8:fotoCartaClienteDTO" nillable="true"/>
+               <xs:element name="importoMassimaleCarta" type="xs:decimal" nillable="true"/>
+               <xs:element name="numeroCarta" type="xs:string" nillable="true"/>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="operazioneCartaEstintaIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="progressivoFotoCartaCliente" type="xs:string" nillable="true"/>
+               <xs:element name="ricaricaAutomatica" type="ns8:ricaricaAutomaticaDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneEmissioneCartaSiDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:operazioneEmissioneCartaDTO">
+            <xs:sequence>
+               <xs:element name="codicePosizioneCarta" type="xs:string" nillable="true"/>
+               <xs:element name="condizioneScontoCanoneCarta" type="ns8:condizioneScontoCanoneCartaDTO" nillable="true"/>
+               <xs:element name="importoMassimalePosizione" type="xs:decimal" nillable="true"/>
+               <xs:element name="importoScontoCanoneCarta" type="xs:decimal" nillable="true"/>
+               <xs:element name="operazioneCartaPadreIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="periodicita" type="ns8:periodicitaDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneRichiestaCodiceSicurezzaDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneRichiestaFidoDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="contrattoConsolidato" type="tns:contrattoConsolidatoDTO" nillable="true"/>
+               <xs:element name="importoFidoRichiesto" type="xs:decimal" nillable="true"/>
+               <xs:element name="numeroRapportoFido" type="xs:string" nillable="true"/>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="operazioneSottoscrizionePolizzaProtezioneDTO">
+      <xs:complexContent>
+         <xs:extension base="tns:dettaglioOperazione">
+            <xs:sequence>
+               <xs:element name="codiceNdgDiCointestazione" type="xs:long" nillable="true"/>
+               <xs:element name="contrattoConsolidato" type="tns:contrattoConsolidatoDTO" nillable="true"/>
+               <xs:element name="dataEmissione" type="xs:dateTime" nillable="true"/>
+               <xs:element name="dataOperazione" type="xs:dateTime" nillable="true"/>
+               <xs:element name="dataScadenza" type="xs:dateTime" nillable="true"/>
+               <xs:element name="dataValuta" type="xs:dateTime" nillable="true"/>
+               <xs:element name="flagInvioComunicazioniCartacee" type="xs:boolean" nillable="true"/>
+               <xs:element name="importoRateoPremio" type="xs:decimal" nillable="true"/>
+               <xs:element name="numeroProposta" type="xs:string" nillable="true"/>
+               <xs:element name="operazioneAperturaContoIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+               <xs:element name="periodoFrazionamentoPremioPolizza" type="ns9:periodoFrazionamentoPremioPolizzaDTO" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="idDettaglioOperazioneResponse">
+      <xs:complexContent>
+         <xs:extension base="ns3:genericResponse">
+            <xs:sequence>
+               <xs:element name="result" type="tns:idDettaglioOperazioneExternalDTOWrapper" nillable="true"/>
+               <xs:element name="results" type="tns:idDettaglioOperazioneExternalDTOWrapper" nillable="true" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="idDettaglioOperazioneExternalDTOWrapper">
+      <xs:complexContent>
+         <xs:extension base="ns3:basicDTO">
+            <xs:sequence>
+               <xs:element name="anagOperzIdDto" type="ns1:anagOperzIdDto" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dettaglioOperazioneResponse">
+      <xs:complexContent>
+         <xs:extension base="ns3:genericResponse">
+            <xs:sequence>
+               <xs:element name="result" type="tns:dettaglioOperazioneExternalDTOWrapper" nillable="true"/>
+               <xs:element name="results" type="tns:dettaglioOperazioneExternalDTOWrapper" nillable="true" maxOccurs="unbounded"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="dettaglioOperazioneExternalDTOWrapper">
+      <xs:complexContent>
+         <xs:extension base="ns3:basicDTO">
+            <xs:sequence>
+               <xs:element name="anagOperzIdDto" type="ns1:anagOperzDto" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:simpleType name="tipoDettaglioEnum">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="REVOCA"/>
+         <xs:enumeration value="EMISSIONE"/>
+      </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

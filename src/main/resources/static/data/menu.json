@@ -1,0 +1,37 @@
+[
+				{"name":"Profile","link":"#/user/profile","icon":"fa-user","color":"bg-danger"},
+				{"name":"Wish","link":"#/user/wish","icon":"fa-gift","color":"bg-orange"},
+				{"name":"Orders","link":"#/user/orders","icon":"fa-money","color":"bg-warning"},				
+				{"name":"E-commerce","link":"#/dashboard","icon":"fa-shopping-cart","color":"bg-orange","list":
+					[
+					{"name":"Configuration","link":"#/portal/configuration/moriana","icon":"fa-gears","color":"bg-warning"},
+					{"name":"Groups","link":"#/products/groups","icon":"fa-folder-open","color":"bg-warning"},
+					{"name":"Products","link":"#/products/list","icon":"fa-gift","color":"bg-warning"},
+					{"name":"Pricing","link":"#/products/pricing","icon":"fa-bars","color":"bg-warning"},
+					{"name":"Community","link":"#/users/list","icon":"fa-users","color":"bg-warning","list":
+					[					
+					{"name":"My tags","link":"#/taggable/list","icon":"fa-folder-open","color":"bg-warning"},
+					{"name":"Path","link":"#/taggable/path","icon":"fa-folder-open","color":"bg-warning"}					
+					]
+					},
+					{"name":"Orders","link":"#/products/orders","icon":"fa-money","color":"bg-warning"},
+					{"name":"Dashboard","link":"#/dashboard","icon":"fa-dashboard","color":"bg-warning"}
+					]	
+				},
+				{"name":"Taggable","link":"#/dashboard","icon":"fa-shopping-cart","color":"bg-orange","list":
+					[					
+					{"name":"My tags","link":"#/taggable/list","icon":"fa-folder-open","color":"bg-warning"},
+					{"name":"Path","link":"#/taggable/path","icon":"fa-folder-open","color":"bg-warning"}					
+					]	
+				},
+				{"name":"Portals","link":"#/user/orders","icon":"fa-shopping-cart","color":"bg-orange","list":
+					[
+					{"name":"Portali","link":"#/portal/ring","icon":"fa-dashboard","color":"bg-warning"}
+					]},
+				{"name":"Logout","link":"#","icon":"fa-power-off","color":"bg-danger","list":
+					[
+					{"name":"Lock","link":"#/community/lock","icon":"fa-unlock-alt","color":"bg-danger"},
+					{"name":"Logout","link":"#/community/login","icon":"fa-power-off","color":"bg-danger"}
+					]
+					}
+				]

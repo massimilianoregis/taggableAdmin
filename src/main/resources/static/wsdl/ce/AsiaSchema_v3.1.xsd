@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="3.1" elementFormDefault="qualified" targetNamespace="http://common.schema.bmed.it/v3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://common.schema.bmed.it/v3">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>AutoreASIA</author>
+         <creation-date>20/07/2013</creation-date>
+         <last-revision-date>30/09/2013</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xs:complexType name="baseBeRequest">
+      <xs:sequence>
+         <xs:element name="metadata" type="tns:requestMetaData" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="requestMetaData">
+      <xs:sequence>
+         <xs:element name="abiCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="callerDataId" type="xs:string" minOccurs="0"/>
+         <xs:element name="channelCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="companyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="familiBankerCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="inputCommonDataVestion" type="xs:string" minOccurs="0"/>
+         <xs:element name="ip" type="xs:string" minOccurs="0"/>
+         <xs:element name="keylog" type="xs:string" minOccurs="0"/>
+         <xs:element name="placeCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="statusCode" type="xs:int"/>
+         <xs:element name="swift" type="xs:string" minOccurs="0"/>
+         <xs:element name="timeStamp" type="xs:dateTime" minOccurs="0"/>
+         <xs:element name="userAgent" type="xs:string" minOccurs="0"/>
+         <xs:element name="userId" type="xs:string" minOccurs="0"/>
+         <xs:element name="versionBs" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="baseBeResponse" abstract="true">
+      <xs:sequence>
+         <xs:element name="responseMetaData" type="tns:responseMetaData" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="responseMetaData">
+      <xs:sequence>
+         <xs:element name="callerDataId" type="xs:string" minOccurs="0"/>
+         <xs:element name="channelCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="companyCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="outputCommonDataVersion" type="xs:string" minOccurs="0"/>
+         <xs:element name="placeCode" type="xs:string" minOccurs="0"/>
+         <xs:element name="statusCode" type="xs:int"/>
+         <xs:element name="userId" type="xs:string" minOccurs="0"/>
+      </xs:sequence>
+  </xs:complexType>
+</xs:schema>

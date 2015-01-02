@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://SharedPropostaDom.schema.bmed.it/v1" xmlns:tns="http://SharedPropostaDom.schema.bmed.it/v1" xmlns:ns1="http://SharedProdottoDom.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://SharedDom.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="SharedProdottoDomSchema_v1.0.xsd" namespace="http://SharedProdottoDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xsd:import schemaLocation="SharedDomSchema_v1.0.xsd" namespace="http://SharedDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="condizionePropostaDTO" type="tns:condizionePropostaDTO"/>
+
+  <xs:element name="tipoPropostaDTO" type="tns:tipoPropostaDTO"/>
+
+  <xs:complexType name="condizionePropostaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:condizioneProfilazioneDTO">
+            <xs:sequence>
+               <xs:element name="tipoProposta" type="tns:tipoPropostaDTO"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="tipoPropostaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns2:basicDTO">
+            <xs:sequence>
+               <xs:element name="description" type="xs:string" nillable="true"/>
+               <xs:element name="id" type="xs:string"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,24 @@
+
+<div class="page page-lock">
+
+    <div class="lock-centered clearfix">
+        <div class="lock-container">
+            <!-- <div ui-time class="lock-time"></div> -->
+            
+            <section class="lock-box animated" ng-class="unlock.state=='error'?'wobble':''">
+                <div class="lock-user">{{user.first_name}} {{user.last_name}}</div>
+                <div class="lock-img"><img src="{{user.img}}" alt=""></div>
+                <div class="lock-pwd">
+                    <form name="loginForm" ng-submit="unlock.send()">
+                        <div class="form-group">
+                            <input ng-model="unlock.psw" type="password" placeholder="Password" class="form-control">
+                            <a ng-click="unlock.send()" class="btn-submit">
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </form>
+                </div>            
+            </section>
+        </div>
+    </div>
+</div>

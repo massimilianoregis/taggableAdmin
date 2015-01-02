@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" elementFormDefault="qualified" targetNamespace="http://DettaglioContoDom.schema.bmed.it/v1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://DettaglioContoDom.schema.bmed.it/v1" xmlns:ns1="http://SharedDom.schema.bmed.it/v1">
+   <xsd:annotation xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:appinfo>
+         <author>ramun.d.casutt</author>
+         <creation-date>Wed Jun 18 18:44:10 CEST 2014</creation-date>
+         <last-revision-date>Wed Jun 18 18:44:10 CEST 2014</last-revision-date>
+      </xsd:appinfo>
+   </xsd:annotation>
+
+  <xsd:import schemaLocation="SharedDomSchema_v1.0.xsd" namespace="http://SharedDom.schema.bmed.it/v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+
+  <xs:element name="modalitaContattoBancaDTO" type="tns:modalitaContattoBancaDTO"/>
+
+  <xs:element name="naturaBloccoRapportoDTO" type="tns:naturaBloccoRapportoDTO"/>
+
+  <xs:element name="reteDTO" type="tns:reteDTO"/>
+
+  <xs:element name="scopoRapportoDTO" type="tns:scopoRapportoDTO"/>
+
+  <xs:element name="servizioAlertSicurezzaDTO" type="tns:servizioAlertSicurezzaDTO"/>
+
+  <xs:element name="sottocategoriaContoDTO" type="tns:sottocategoriaContoDTO"/>
+
+  <xs:element name="tipoBloccoRapportoDTO" type="tns:tipoBloccoRapportoDTO"/>
+
+  <xs:complexType name="modalitaContattoBancaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceModalitaContattoBanca" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneModalitaContattoBanca" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="reteDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceRete" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneRete" type="xs:string" nillable="true"/>
+               <xs:element name="valoreCodiceSistemaTarget" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="scopoRapportoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceScopoRapporto" type="xs:string" nillable="true"/>
+               <xs:element name="codiceTipoProdottoMom1" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneScopoRapporto" type="xs:string" nillable="true"/>
+               <xs:element name="valoreCodiceSistemaTarget" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="servizioAlertSicurezzaDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceServizioAlertSicurezza" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneServizioAlertSicurezza" type="xs:string" nillable="true"/>
+               <xs:element name="valoreCodiceSistemaTarget" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="sottocategoriaContoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceSottocategoriaConto" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneSottocategoriaConto" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="tipoBloccoRapportoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceTipoBloccoRapporto" type="xs:string" nillable="true"/>
+               <xs:element name="codiceTipoProdottoMom1" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneTipoBloccoRapporto" type="xs:string" nillable="true"/>
+               <xs:element name="flagBloccoEstinzioneRapporto" type="xs:boolean" nillable="true"/>
+               <xs:element name="naturaBloccoRapporto" type="tns:naturaBloccoRapportoDTO" nillable="true"/>
+               <xs:element name="notaPredefinitaBlocco" type="xs:string" nillable="true"/>
+               <xs:element name="valoreCodiceSistemaTarget" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="naturaBloccoRapportoDTO">
+      <xs:complexContent>
+         <xs:extension base="ns1:basicDTO">
+            <xs:sequence>
+               <xs:element name="codiceNaturaBloccoRapporto" type="xs:string" nillable="true"/>
+               <xs:element name="descrizioneNaturaBloccoRapporto" type="xs:string" nillable="true"/>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

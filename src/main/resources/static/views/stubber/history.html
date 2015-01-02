@@ -1,0 +1,93 @@
+
+<script>
+	function historyController($scope)
+		{
+		var filter = function(data)
+			{
+			for(d in data)
+				{
+				data[d].open=function(){document.location.href="#stubber/singleHistory/"+this.code}
+				}
+				
+			return data;
+			}
+		$scope.load=function()
+			{
+			
+			$.get("history/list",function(data)
+				{
+				$scope.max = 0;				
+				for(var d in data)
+					{					
+					if($scope.max < data[d].times) 
+						$scope.max = data[d].times;
+					}
+				
+				$scope.history=filter(data);	
+				$scope.$apply();
+				});
+			for(var h in $scope.history)
+				{}
+			}
+		$scope.open=function()
+			{
+			document.location.href="#stubber/singleHistory/-1";
+			}
+		$scope.history=
+			[
+			
+			];
+		$scope.sort=
+			{
+			field:'times',
+			reverse:true
+			}
+		$scope.order=function(sort,reverse)
+			{
+			$scope.sort.field=sort;
+			$scope.sort.reverse=reverse;
+			}
+		$scope.load();
+		}
+</script>
+<div class="page page-table">
+
+
+    
+    <div class="panel panel-default" ng-controller="historyController">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span> Calls</strong>
+        	<div class="label label-success" style="float:right" ng-click="open()">add</div>
+        </div>
+        
+        <table class="table">
+            <thead>
+                <tr>                    
+                    <th ng-click="reverse=!sort.reverse; order('operation',reverse)">Operation
+                    	<span class="glyphicon glyphicon-chevron-up" ng-show="sort.field == 'operation' && sort.reverse"></span>
+                        <span class="glyphicon glyphicon-chevron-down"  ng-show="sort.field == 'operation' && !sort.reverse"></span></th>
+                    <th ng-click="reverse=!sort.reverse; order('date',reverse)">Last saved
+                    	<span class="glyphicon glyphicon-chevron-up" ng-show="sort.field == 'date' && sort.reverse"></span>
+                        <span class="glyphicon glyphicon-chevron-down"  ng-show="sort.field == 'date' && !sort.reverse"></span></th>
+                    </th>
+                    <th>Status</th>
+                    <th ng-click="reverse=!sort.reverse; order('times',reverse)">used
+                    	<span class="glyphicon glyphicon-chevron-up" ng-show="sort.field == 'times' && sort.reverse"></span>
+                        <span class="glyphicon glyphicon-chevron-down"  ng-show="sort.field == 'times' && !sort.reverse"></span></th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="h in history | orderBy:sort.field:sort.reverse" ng-click="h.open()">                    
+                    <td>{{h.operation}}</td>
+                    <td>{{h.date}}</td>
+                    <td><span class="label label-info">Success</span></td>
+                    <td tooltip="{{h.times}}" ><progressbar class="progressbar-xs no-margin" max="max" value="h.times"></progressbar>
+                </tr>               
+            </tbody>
+        </table>
+    </div>
+
+    
+
+</div>

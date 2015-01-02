@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N0:definitions name="OperazioneAssegniService_v1.0" targetNamespace="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:WL5G3N2="http://fault.common.schema.bmed.it/v1" xmlns:WL5G3N3="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:documentation>
+      1.0
+      ramun.d.casutt
+      Wed Jun 18 18:44:10 CEST 2014
+      Wed Jun 18 18:44:10 CEST 2014
+   </WL5G3N0:documentation>
+  <WL5G3N0:types>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://simpleType.common.schema.bmed.it/v1" schemaLocation="simpleTypecommonSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://fault.common.schema.bmed.it/v1" schemaLocation="faultcommonSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://common.schema.bmed.it/v3" schemaLocation="AsiaSchema_v3.1.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://common.schema.bmed.it/v1" schemaLocation="commonSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://SharedPropostaDom.schema.bmed.it/v1" schemaLocation="SharedPropostaDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://SharedProdottoDom.schema.bmed.it/v1" schemaLocation="SharedProdottoDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://SharedDom.schema.bmed.it/v1" schemaLocation="SharedDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://OperazioneAssegniAppDom.service.bmed.it/v1" schemaLocation="OperazioneAssegniService_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://MomGestionePraticaReq.schema.bmed.it/v2" schemaLocation="MomGestionePraticaReqSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://MomGestionePraticaBean.schema.bmed.it/v2" schemaLocation="MomGestionePraticaBeanSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://DettaglioPolizzaDom.schema.bmed.it/v1" schemaLocation="DettaglioPolizzaDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://DettaglioOperazioneDom.schema.bmed.it/v1" schemaLocation="DettaglioOperazioneDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://DettaglioDossierTitoliDom.schema.bmed.it/v1" schemaLocation="DettaglioDossierTitoliDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://DettaglioContoDom.schema.bmed.it/v1" schemaLocation="DettaglioContoDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://DettaglioCartaDom.schema.bmed.it/v1" schemaLocation="DettaglioCartaDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://OperazioneAssegniAppDom.service.bmed.it/v1" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:import namespace="http://AnagraficaClienteDom.schema.bmed.it/v1" schemaLocation="AnagraficaClienteDomSchema_v1.0.xsd"/>
+    </xsd:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="storeOperazioneAssegniMessage">
+    <WL5G3N0:part element="WL5G3N1:storeOperazioneAssegni" name="storeOperazioneAssegni"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="storeOperazioneAssegniResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:storeOperazioneAssegniResponse" name="storeOperazioneAssegniResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="SystemFaultMessage">
+    <WL5G3N0:part element="WL5G3N2:BaseFaultType" name="fault"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="loadOperazioneAssegniMessage">
+    <WL5G3N0:part element="WL5G3N1:loadOperazioneAssegni" name="loadOperazioneAssegni"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="loadOperazioneAssegniResponseMessage">
+    <WL5G3N0:part element="WL5G3N1:loadOperazioneAssegniResponse" name="loadOperazioneAssegniResponse"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="deleteOperazioneAssegniMessage">
+    <WL5G3N0:part element="WL5G3N1:deleteOperazioneAssegni" name="deleteOperazioneAssegni"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="deleteOperazioneAssegniResponseMessage"/>
+  <WL5G3N0:portType name="OperazioneAssegniPortType_v1">
+    <WL5G3N0:operation name="storeOperazioneAssegni">
+      <WL5G3N0:input message="WL5G3N1:storeOperazioneAssegniMessage"/>
+      <WL5G3N0:output message="WL5G3N1:storeOperazioneAssegniResponseMessage"/>
+      <WL5G3N0:fault message="WL5G3N1:SystemFaultMessage" name="SystemFault"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="loadOperazioneAssegni">
+      <WL5G3N0:input message="WL5G3N1:loadOperazioneAssegniMessage"/>
+      <WL5G3N0:output message="WL5G3N1:loadOperazioneAssegniResponseMessage"/>
+      <WL5G3N0:fault message="WL5G3N1:SystemFaultMessage" name="SystemFault"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="deleteOperazioneAssegni">
+      <WL5G3N0:input message="WL5G3N1:deleteOperazioneAssegniMessage"/>
+      <WL5G3N0:output message="WL5G3N1:deleteOperazioneAssegniResponseMessage"/>
+      <WL5G3N0:fault message="WL5G3N1:SystemFaultMessage" name="SystemFault"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="OperazioneAssegniServiceBinding" type="WL5G3N1:OperazioneAssegniPortType_v1">
+    <WL5G3N3:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="storeOperazioneAssegni">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="SystemFault">
+        <WL5G3N3:fault name="SystemFault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="loadOperazioneAssegni">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="SystemFault">
+        <WL5G3N3:fault name="SystemFault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="deleteOperazioneAssegni">
+      <WL5G3N3:operation/>
+      <WL5G3N0:input>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N3:body use="literal"/>
+      </WL5G3N0:output>
+      <WL5G3N0:fault name="SystemFault">
+        <WL5G3N3:fault name="SystemFault" use="literal"/>
+      </WL5G3N0:fault>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="OperazioneAssegniService_v1">
+    <WL5G3N0:port binding="WL5G3N1:OperazioneAssegniServiceBinding" name="OperazioneAssegniServicePort">
+      <WL5G3N3:address location="http://lxsoa701:8002/fd-be-osb-dettagliooperazione-prj/inbound/PS_WS_OperazioneAssegni"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>

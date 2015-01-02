@@ -1,0 +1,302 @@
+<style>
+.A4 {
+position: absolute;
+left: 38px;
+width: 21cm;
+height: 29.7cm;
+background: white;
+top: 51px;
+box-shadow: 0px 4px 12px black;
+margin-bottom: 40px;
+font-size: 12px;
+}
+.fattura li {
+padding: 0;
+margin: 0;
+clear: both;
+list-style-type: none;
+position:relative;
+height: 31px;
+-webkit-transition-duration: 2s;
+line-height: 31px;
+padding-left: 10px;
+padding-right: 10px;
+}
+.fattura ul
+{
+padding: 0;
+}
+.fattura .rows li.title,  .ddt .rows li.title {
+background: #efefef;
+font-weight: bold;
+}
+
+.fattura .dati.from {
+position: absolute;
+left: 1cm;
+top: 1cm;
+}
+.fattura .dati.to {
+position: absolute;
+right: 1cm;
+top: 1cm;
+}
+	.fattura .header
+		{
+			border-bottom: solid 1px silver;
+height: 3cm;
+		}
+	 .fattura,  .ddt
+		{
+		-webkit-transform: scale(.3);
+		-webkit-transform-origin: 0 0;
+		position: absolute;
+		-webkit-transition-duration: 2s;
+		}
+	 .fattura .rows, .ddt .rows
+		{
+		order: solid 1pt silver;
+		}
+	 .fattura .rows li, .ddt .rows li
+		{
+		position: relative;
+		}
+	 .fattura .rows li > div,  .ddt .rows li > div
+		{
+		position:absolute;	
+		}
+	 .fattura .rows li > div.nome,  .ddt .rows li > div.nome
+		{
+			
+		}
+	 .fattura .rows li > div.qta,  .ddt .rows li > div.qta
+		{
+		left:initial;
+		right:	2cm;
+		}
+	 .fattura .rows li > div.importo
+		{
+		right:7cm;	
+		}
+	 .fattura .rows li > div.totale
+		{
+		right:4mm;
+		}
+	 .fattura .rows li.title,  .ddt .rows li.title
+		{	
+		background: #efefef;
+		font-weight: bold;
+		}
+	.fattura .identify {
+position: absolute;
+top: 3.5cm;
+left: 1cm;
+}
+.fattura  .text {
+position: absolute;
+top: 4cm;
+left: 1cm;
+bottom: 6cm;
+right: 1cm;
+}
+.fattura .totals {
+border-top: solid 1px black;
+}
+</style>
+
+<script>
+		filter.fattura=function(data)
+		{
+		var obj = {
+					display:false,
+					toggle:function()
+						{
+						if(this.display)
+							this.hide();
+						else	
+							this.show();
+						this.display=!this.display;
+						},
+					hide:function()
+						{
+						$(" .fattura").css({'-webkit-transform': 'scale(.32)','left':38,'top':51,"z-index":0});	
+						},
+					show:function()
+						{
+						$(" .fattura").css({'-webkit-transform': 'scale(.9)',"z-index":1});
+						$(" .fattura").offset({left:220,top:48});
+						},
+					total:function()
+						{
+						var total=0;
+						var rows = this.rows;
+						for(var r=0;r<rows.length;r++)
+							{
+							total+=rows[r].total;
+							}
+						return total;
+						}
+				};
+		$.extend(data,obj);
+		return data;
+		};
+	
+	
+	
+	var id = $m.me.ordini.singleid;		
+		
+	macumba.services.basket.single.send({uid:id},function(data)
+		{			
+		var idFattura = data.idFattura;
+		data = filter.basket(data);
+		
+		try{$m.me.ordini.set("single",data);}catch(e){}
+		
+		macumba.services.fiscal.fatture.get.send(
+			{
+			uid:idFattura	
+			},function(data)
+			{			
+			$m.me.ordini.single.set("fattura",filter.fattura(data));
+			macumba.bind($m,[".page.page-order"]);			
+			});
+		});
+	
+</script>
+
+<div class="page page-order">
+	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span>Ordine</strong>
+        	
+        </div>
+        <div class="panel-body">
+        	 <section class="panel panel-box">
+				                <ul class="list-unstyled list-info" style="text-align:left">
+	                                <li>
+	                                    <span class="icon glyphicon glyphicon-user"></span>
+	                                    <label>User name</label>
+	                                    <span data-bind="text:me.ordini.single.data"></span>
+	                                </li>	                              
+	                                <li>
+	                                    <span class="icon glyphicon glyphicon-home"></span>
+	                                    <label>Address</label>
+	                                   	<span data-bind="text:me.ordini.single.data"></span>
+	                                </li>	                                
+	                                <li>
+	                                    <span class="icon glyphicon glyphicon-flag"></span>
+	                                    <label>Total</label>
+	                                    <span data-bind="eur:me.ordini.single.total"></span>
+	                                </li>
+               					</ul>
+           					 </section>
+        </div>
+    </div>
+	
+
+
+	<div class="row">
+    <div class="col-md-6">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	        	<strong><span class="glyphicon glyphicon-th"></span>Ordine</strong>
+	        	
+	        </div>
+	        <div class="panel-body">
+	        	
+				 <table class="table table-striped">
+		            <thead>
+		                <tr>
+		                    <th>img</th>                    
+		                    <th>Name</th>
+		                    <th>Price</th>
+		                    <th>Qta</th>
+		                </tr>
+		            </thead>
+		            <tbody data-bind="source:me.ordini.single.rows" data-template="prodotti">
+		            	<script id="prodotti" type="text/x-kendo-template">
+		                <tr style="cursor:pointer;">
+		                    <td><div data-bind="background:img" style="background-size:cover; border:solid 1px silver; border-radius:35px; width:35px; height:35px; margin:-8px"></div></td>
+		                    
+		                    <td data-bind="text:description"></td>
+		                    <td><span class="label label-info" data-bind="eur:importo">Pending</span></td>
+		                    <td>x <span data-bind="text:qta"></span></td>
+		                </tr>
+		                </script>
+		             
+		            </tbody>
+		        </table>
+		        
+	        </div>
+	    </div>
+	</div>
+	
+	<div class="col-md-6">
+	    <div class="panel panel-default">
+	        <div class="panel-heading">
+	        	<strong><span class="glyphicon glyphicon-th"></span>Fattura</strong>
+	        	
+	        </div>
+	        <div class="panel-body">
+	        	
+	        	<DIV CLASS="docs" STYLE="height: 384px; width: 295px;" data-bind="source:me.ordini.single.fattura" data-template="fatturaaa">
+								<!--fatture-->
+						    </DIV>
+				 
+	        </div>
+	    </div>
+	</div>
+	</div>
+
+</div>
+
+<SCRIPT type="text/kendo-template" ID="fatturaaa">
+									
+						       <DIV CLASS="paper A4 fattura" ONCLICK="$m.me.ordini.single.fattura.toggle()">
+						       		<DIV CLASS="header">
+						       			<DIV CLASS="qr"></DIV>
+							       		<DIV CLASS="dati from">
+							       			<DIV CLASS="logo"></DIV>
+							       			<DIV CLASS="ragione" data-bind="text:from.name"></DIV>
+							       			<DIV CLASS="sede" data-bind="text:from.address"></DIV>
+							       			<DIV CLASS="piva" data-bind="text:from.piva"></DIV>
+							       		</DIV>
+							       		<DIV CLASS="dati to">
+							       			<DIV CLASS="logo"></DIV>
+							       			<DIV CLASS="ragione" data-bind="text:to.name"></DIV>
+							       			<DIV CLASS="sede" data-bind="text:to.address"></DIV>
+							       			<DIV CLASS="piva" data-bind="text:to.piva"></DIV>			       			
+							       		</DIV>
+							       		<DIV CLASS="identify">Fattura n.<SPAN data-bind="text:number"></SPAN> del <SPAN data-bind="text:date"></SPAN></DIV>
+							       		<DIV CLASS="text">
+							       			<div class="rows">
+											    <ul>
+											      <li CLASS="title">
+											        <div CLASS="nome">Nome</div>
+											        <div CLASS="qta">Qta</div>
+											        <div CLASS="importo">Importo</div>
+											        <div CLASS="totale">Totale</div>
+											      </li>
+											      <DIV data-bind="source:rows" data-template="tmpOrderFattura">
+											      		<!--righe fattura-->
+											      </DIV>
+											      <li class="totals">
+											      	<div class="totale" data-bind="eur:total()"></div>
+											      </li>
+											    </ul>
+											  </div>
+							       		</DIV>
+						       		</DIV>
+						       </DIV>
+						       
+		</SCRIPT>
+		
+	<SCRIPT type="text/kendo-template" ID="tmpOrderFattura">
+											      <li>
+											        <div CLASS="nome" data-bind="text:name">Nome</div>
+											        <div CLASS="qta" data-bind="text:qta">2X</div>
+											        <div CLASS="importo" data-bind="eur:price">17.60</div>
+											        <div CLASS="totale" data-bind="eur:total">37.60</div>
+											      </li>
+		</SCRIPT>

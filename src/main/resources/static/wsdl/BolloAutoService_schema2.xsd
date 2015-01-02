@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://www.bea.com/wli/sb/context" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:import namespace="http://www.bea.com/wli/sb/context" schemaLocation="BolloAutoService_schema1.xsd"/>
+
+  <xs:element name="Fault">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="faultcode" type="xs:string" form="qualified"/>
+        <xs:element name="faultstring" type="xs:string" form="qualified" minOccurs="0"/>
+        <xs:element name="detail" type="ns1:faultType" form="qualified"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

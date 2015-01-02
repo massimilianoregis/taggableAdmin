@@ -1,0 +1,54 @@
+
+<style>
+	.btn-right
+		{
+		float: right;
+		margin-top: -6px;
+		}
+	.progressQta
+		{
+		width: 100px;
+		position: absolute;
+		left: 133px;
+		top: 31px;
+		background: white;
+		border: solid 1px black;
+		}
+</style>
+
+<div class="page page-groups">
+
+	
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span>Groups</strong>
+        	        		
+			<!--progressbar class="progressbar-xs progressQta" data-bind="attr:{value:admin.prodotti.levels.qta}" value="10" type="info"></progressbar-->
+        	
+
+        	<SPAN class="btn-right"><form ng-submit="nuovo()"><INPUT TYPE="text" ng-model="name"/> <span class="btn btn-info" ng-click="nuovo()">Nuova</span></form></SPAN>   
+        </div>
+        <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+            		<TH CLASS="nome">Nome</TH>
+					<TH CLASS="prezzo">Prodotti</TH>	
+					<TH CLASS="prezzo">Del</TH>					
+                </tr>
+            </thead>
+            
+            <tbody>
+				<TR ng-repeat="item in groups.list">
+					<TD data-bind="text:name,click:select" CLASS="nome">{{item.name}}</TD>
+					<TD CLASS="prezzo"><SPAN STYLE="cursor:pointer;" data-bind="text:items"></SPAN></TD>
+					<TD CLASS="prezzo"><SPAN CLASS="glyphicon glyphicon-trash" ng-click="remove(item)"></SPAN></TD>
+				</TR>
+			</tbody>
+        </table>
+        
+        </div>
+    </div>
+</div>	
+
+</div>

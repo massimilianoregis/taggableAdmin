@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.dcms.cartasi.it">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:openSession soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <request xsi:type="dcms:OpenSessionRequest" xmlns:dcms="http://xml.apache.org/id/cartasi/dcms">
+            <applicazione xsi:type="xsd:string">?</applicazione>
+            <password xsi:type="xsd:string"><%=psw%></password>
+            <userId xsi:type="xsd:string"><%=user%></userId>
+            <utentePortale xsi:type="xsd:string">?</utentePortale>
+         </request>
+      </ser:openSession>
+   </soapenv:Body>
+</soapenv:Envelope>

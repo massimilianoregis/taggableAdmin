@@ -1,0 +1,66 @@
+<script>
+$m.binding();
+</script>
+<style>
+	.btn-right
+		{
+		float: right;
+		margin-top: -6px;
+		}
+	.progressQta
+		{
+		width: 100px;
+		position: absolute;
+		left: 133px;
+		top: 31px;
+		background: white;
+		border: solid 1px black;
+		}
+</style>
+
+<SCRIPT>
+	function GroupsCtrl($scope)
+		{
+		$scope.ricerca="";
+		$scope.nuova=function()
+			{			
+			$m.admin.categorie.nuova($scope.ricerca);
+			};
+		};
+</SCRIPT>
+<div class="page page-groups" BIND="kendo">
+
+	
+    <div class="panel panel-default" data-ng-controller="GroupsCtrl">
+        <div class="panel-heading">
+        	<strong><span class="glyphicon glyphicon-th"></span> Pages</strong>
+        	        		
+			<!--progressbar class="progressbar-xs progressQta" data-bind="attr:{value:admin.prodotti.levels.qta}" value="10" type="info"></progressbar-->
+        	
+
+        	<SPAN class="btn-right"><INPUT TYPE="text" ng-model="ricerca"/> <span class="btn btn-info" ng-click="nuova()">Nuova</span></SPAN>   
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+            		<TH CLASS="nome">Nome</TH>
+					<TH CLASS="prezzo">Links</TH>	
+					<TH CLASS="prezzo">Del</TH>					
+                </tr>
+            </thead>
+            <tbody data-bind="source:admin.categorie.list" data-template="tolAdminCategoriee">
+					
+					<script type="text/x-kendo-template" id="tolAdminCategoriee">
+					<TR>
+						<TD data-bind="text:name,click:select" CLASS="nome"></TD>
+						<TD CLASS="prezzo" data-bind="click:prodotti"><SPAN STYLE="cursor:pointer;" data-bind="text:items"></SPAN></TD>
+						<TD CLASS="prezzo" data-bind="click:remove"><SPAN CLASS="glyphicon glyphicon-trash"></SPAN></TD>
+					</TR>
+					</script>
+								
+			</tbody>
+        </table>
+    </div>
+</div>	
+
+</div>

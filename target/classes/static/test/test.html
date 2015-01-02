@@ -1,0 +1,33 @@
+<html>
+<head></head>
+<body ng-app="miky"> 
+	<div ng-controller="main">
+	Ciao {{name}}<BR>
+	<input type="text" ng-model="name">
+	
+	</div>
+	<div ng-view></div>
+	<A href="#/about">Chi siamo</A>
+	<A href="#/where">Dove siamo</A>
+</body>
+
+ <script src="/scripts/vendor.js"></script>
+ <script src="/scripts/ui.js"></script>
+ <script src="/scripts/app.js"></script>
+ <script src="/scripts/soap.js"></script>
+ <script src="/scripts/route.js"></script>
+<script>
+angular.module("miky",["ngRoute"])
+	.config(["$routeProvider", function($routeProvider) 
+	     {
+		 $routeProvider    		
+			.when('/about', 	{templateUrl: '/test/about.html'})
+			.when('/where', 	{templateUrl: '/test/where.html'})
+			.otherwise({redirectTo: '/about'})
+	     }])
+	.controller("main",["$scope",function($scope)
+	     {
+		 $scope.name="Michela";
+	     }]);
+</script>
+</html>

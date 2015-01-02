@@ -1,0 +1,14 @@
+{
+"name":"name",
+"code":"CODFD",
+"id":"id",
+"description":"descrizione",
+"price":
+	{
+	"web":10,
+	"shop":20
+	},
+"gallery":
+	[{"img":"https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRjYmNQ_Esj1K5Xsc9eSctcehxWANwnmv5yL5YN45Mlum8U_8X32w"}],
+"groups":["nome"]
+}

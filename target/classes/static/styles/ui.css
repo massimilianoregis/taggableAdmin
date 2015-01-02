@@ -1,0 +1,22 @@
+.morris-hover{position:absolute;z-index:1000}.morris-hover.morris-default-style{border-radius:10px;padding:6px;color:#666;background:rgba(255,255,255,0.8);border:solid 2px rgba(230,230,230,0.8);font-family:sans-serif;font-size:12px;text-align:center}.morris-hover.morris-default-style .morris-hover-row-label{font-weight:bold;margin:0.25em 0}
+.morris-hover.morris-default-style .morris-hover-point{white-space:nowrap;margin:0.1em 0}
+
+.modal { 
+	display: block;
+}
+
+/* Custom dialog/modal headers */
+
+.bootbox-alert .modal-header { background-color: #d2322d; }
+.dialog-header-wait { background-color: #428bca; }
+.dialog-header-notify { background-color: #eeeeee; }
+.bootbox-confirm .modal-header { background-color: #333333; }
+.bootbox-confirm .modal-header h4,.bootbox-confirm .modal-header span,
+.bootbox-alert .modal-header h4,.bootbox-alert .modal-header span,
+	.dialog-header-error span, .dialog-header-error h4,
+	.dialog-header-wait span, .dialog-header-wait h4,
+	.dialog-header-confirm span, .dialog-header-confirm h4 { color: #ffffff; }
+
+/* Ease Display */
+
+.pad { padding: 25px; }

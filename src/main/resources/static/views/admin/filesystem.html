@@ -1,0 +1,141 @@
+<!--link rel="stylesheet" href="http://jhfrench.github.io/bootstrap-tree/bootstrap-combined.min.css"></link-->
+<script>
+	$(document).ready(tree);
+	function tree() {
+			$('.tree > ul').attr('role', 'tree').find('ul').attr('role', 'group');
+			var obj = $('.tree').find('li:has(ul)').addClass('parent_li').attr('role', 'treeitem').find(' > span').attr('title', 'Collapse this branch');
+			if(obj.attr("event")!=null) return;
+			obj.on('click', function (e) {
+				if($(this).parent().find("LI").size()==0) 
+					{
+					$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+					return;
+					}					
+		       // var children = $(this).parent('li.parent_li').find(' > ul > li');
+		        var children = $(this).parent('li.parent_li').find(' > ul');		        
+		        if (children.is(':visible')) {
+		    		children.hide('fast');
+		    		$(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+		        }
+		        else {
+		    		children.show('fast');
+		    		$(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+		        }
+		        e.stopPropagation();
+		    });
+		    obj.attr("event","click");
+		}
+	function filter(data,$scope)
+		{
+		data.exe=function()
+			{
+			$.get("filesystem/execute",{path:this.path,name:this.name},function(data)
+				{
+				menu.add({link:"#/admin/execute/"+data.id,name:data.name, icon:"fa-dashboard",color:"bg-danger"})
+				toastr.success("eseguito");	
+				},"json");			
+			}
+		data.pref = function()
+			{			
+			$scope.pref.push(this);
+			//$scope.$apply();
+			}
+		data.open = function()
+			{			
+			var act = this;
+			$.get("filesystem/list",{path:act.path},function(dta)
+				{
+				for(var i in dta)
+					filter(dta[i],$scope);
+				act.list=dta;				
+				
+				setTimeout(tree,200);
+				$scope.$apply();								
+				});
+			}			
+		}
+	function fileControl($scope)
+		{
+			
+		var obj = 
+			{
+			load:function()
+				{				
+				$.get("filesystem/list",{path:"/Users/max/Documents"},function(data)
+					{			
+					for(var i in data)
+						filter(data[i],$scope);	
+					$scope.root=data;	
+					$scope.$apply();
+					setTimeout(tree,200);	
+					},"json");
+				}
+			};			
+		$scope.seeHidden=true;
+		$scope.pref=[]
+		$scope.load=obj.load;
+		$scope.load();
+		$scope.$watch("seeHidden",function(e)
+			{
+			
+			if(e)	$(".tree .nascosto").css("display","inline");
+			else	$(".tree .nascosto").css("display","none");
+			});
+		};
+</script>
+<style>
+	[role=tree] [class^="icon-"],[role=tree] [class*=" icon-"] {
+		display: inline-block;
+		width: 14px;
+		height: 14px;
+		line-height: 14px;
+		vertical-align: text-top;
+		background-image: url("http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/img/glyphicons-halflings.png");
+		
+		background-repeat: no-repeat;
+		margin-top: 1px;
+		}
+	.icon-folder-open {
+background-position: -408px -120px;
+width: 16px;
+}
+.icon-minus-sign {
+background-position: -24px -96px;
+}
+.icon-plus-sign {
+background-position: 0 -96px;
+}
+.visible	{opacity:1}
+.tree .nascosto	{opacity:.4;}
+</style>
+<div ng-controller="fileControl">
+<div class="page page-table">
+ 
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Commands</strong></div>
+        <div class="panel-body">
+            <div class="tree well" style="max-height:500px;">
+            	<ul>
+            		<li ng-repeat="file in pref" ng-include="'views/admin/dir.html'"></li>
+            	</ul>
+            </div>
+                     
+        </div>
+    </section>
+</div>
+
+<div class="page page-table"> 	
+    <section class="panel panel-default">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> File System</strong></div>
+        <div class="panel-body">
+        	<label>see Hidden</label><input type="checkbox" ng-model="seeHidden"/>
+            <div class="tree well" style="max-height:500px;">
+            	<ul>
+            		<li ng-repeat="file in root" ng-include="'views/admin/dir.html'"></li>
+            	</ul>
+            </div>
+                     
+        </div>
+    </section>
+</div>
+</div>

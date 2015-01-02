@@ -1,0 +1,73 @@
+
+<script>
+	function configController($scope)
+		{
+		
+		$scope.load=function()
+			{					
+			$.get("stub/config",function(data)
+				{			
+				$scope.config=data;				
+				$scope.$apply();
+				})
+			}
+		$scope.save=function()
+			{
+			
+			$.get("stub/config/save",$scope.config);
+			}
+		$scope.response={};
+		$scope.load();
+		}
+</script>
+<div class="page page-table">
+
+    <div class="row">
+        <div class="col-md-12" data-ng-controller="configController">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Config</strong></div>
+                <div class="panel-body">
+	                
+	                	<label for="">DBase Path</label>                                            
+	                	<input type="text" class="form-control" ng-model="config.dbaseFile"/>
+	                	<BR>
+	                	<button class="btn btn-success" type="submit" ng-click="save()">invia</button>
+	                
+                </div>
+            </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> DBase</strong></div>
+                <div class="panel-body">	                
+	                	<label for="">Url</label>                                            
+	                	<input type="text" class="form-control"/>
+	                	
+	                	<label for="">Driver</label>                                            
+	                	<input type="text" class="form-control"/>
+	                	
+	                	<label for="">User</label>                                            
+	                	<input type="text" class="form-control"/>
+	                	
+	                	<label for="">Psw</label>                                            
+	                	<input type="text" class="form-control"/>
+	                	<BR>
+	                	<button class="btn btn-success" type="submit" ng-click="save()">invia</button>	                
+                </div>
+            </div>
+            
+             <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Web server</strong></div>
+                <div class="panel-body">	                
+	                	<label for="">Port</label>                                            
+	                	<input type="text" class="form-control"/>
+	                	
+	                	<label for="">Stub Url</label>                                            
+	                	<input type="text" class="form-control" value="/stub"/>
+	                	
+	                	<button class="btn btn-success" type="submit" ng-click="save()">invia</button>	                
+                </div>
+            </div>
+    	</div>
+    </div>
+    
+</div>

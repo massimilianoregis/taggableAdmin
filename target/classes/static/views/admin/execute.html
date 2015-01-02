@@ -1,0 +1,44 @@
+
+<script>
+	function responseController($scope,$routeParams)
+		{
+		var id = $routeParams.code;
+			
+		$scope.load=function(id)
+			{			
+			$.get("/filesystem/execute/"+id+"/output",function(data)
+				{							
+				$scope.response=data;											
+				$scope.$apply();				
+				})
+			}
+		
+		$scope.response="";
+		
+		$scope.load(id);
+		}
+		
+		toastr.options = {"positionClass": "toast-bottom-right"};
+</script>
+<div class="page page-table" ng-controller="responseController">
+	 <div class="row">
+        <div class="col-md-12" >
+			<div class="panel panel-default">
+	        	<div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Actions</strong></div>
+	         		         	
+	    	</div>
+    	</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Output</strong></div>
+                <div class="panel-body">
+                	<textarea style="width:100%; height:400px" ng-model="response"></textarea>
+                </div>
+            </div>            
+    	</div>
+    </div>
+    
+    
+</div>

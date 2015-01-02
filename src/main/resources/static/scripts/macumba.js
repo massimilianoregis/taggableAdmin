@@ -1,0 +1,4 @@
+$(function()
+	{
+	$("BODY").append("CIAO");
+	})

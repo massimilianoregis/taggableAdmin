@@ -1,4 +1,4 @@
-angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy"])
+angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy","ngUpload",'ui.router',"taggableMock"])
 .config(['$routeProvider', 
   	function($routeProvider) 
   		{	  
@@ -10,8 +10,8 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
     		.when('/products/pricing', 		{controller: "pricingController", 	templateUrl: 'views/products/pricing.html'})
     		.when('/products/orders', 		{controller: "ordersController",	templateUrl: 'views/products/orders.html'})
     		.when('/products/order/:id', 	{controller: "ordersController",	templateUrl: 'views/products/order.html'})
-    		.when('/products/price', 		{controller: "priceController",		templateUrl: 'views/products/price.html'})
-    	    
+    		.when('/products/price', 		{controller: "priceController",		templateUrl: 'views/products/price.html'})    	    
+    		
     		.when('/community/lock', 		{controller: "communityController",	templateUrl: 'views/community/lock-screen.html'})
     		.when('/community/login', 		{controller: "communityController",	templateUrl: 'views/community/login.html'})
     		.when('/community/register', 	{controller: "communityController",	templateUrl: 'views/community/register.html'})
@@ -30,24 +30,64 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
     		    	
     		.when('/loyalty/list', {templateUrl: 'views/loyalty/list.html'})
     		
-    		.when('/taggable/list', 	{controller:"mapCtrl", templateUrl: 'views/taggable/list.html'})
-    		.when('/taggable/path', 	{controller:"mapCtrl", templateUrl: 'views/taggable/path.html'})
-    		
+    		.when('/taggable/list', 		{controller:"taggableListController", templateUrl: 'views/taggable/list.html'})
+    		.when('/taggable/new/:type', 	{controller:"taggableController",	template: '<div ng-include="type"/>'})
+    		.when('/taggable/path', 		{controller:"mapCtrl", templateUrl: 'views/taggable/path.html'})    		    		    		
 
     		.when('/init',{templateUrl: 'views/pages/init.html'})
     		.when('/404',{templateUrl: 'views/pages/404.html'})
     		.otherwise({redirectTo: '/products/list'});
     	}]
   )
+ .value('taOptions',  {
+	toolbar: [
+		//['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
+		['bold', 'italics', 'underline', 'ul', 'ol'],
+		['justifyLeft','justifyCenter','justifyRight']
+		//['html', 'insertImage', 'insertLink']
+	],
+	classes: {
+		focussed: "focussed",
+		toolbar: "btn-toolbar",
+		toolbarGroup: "btn-group",
+		toolbarButton: "btn btn-default",
+		toolbarButtonActive: "active",
+		disabled: "disabled",
+		textEditor: 'form-control',
+		htmlEditor: 'form-control'
+	},
+	setup: {
+		// wysiwyg mode
+		textEditorSetup: function($element){ /* Do some processing here */ },
+		// raw html
+		htmlEditorSetup: function($element){ /* Do some processing here */ }
+	},
+	defaultFileDropHandler:
+		/* istanbul ignore next: untestable image processing */
+		function(file, insertAction){
+			var reader = new FileReader();
+			if(file.type.substring(0, 5) === 'image'){
+				reader.onload = function() {
+					if(reader.result !== '') insertAction('insertImage', reader.result, true);
+				};
+
+				reader.readAsDataURL(file);
+				// NOTE: For async procedures return a promise and resolve it when the editor should update the model.
+				return true;
+			}
+			return false;
+		}
+	})
 .run( function($rootScope, $location) 
 	{
+	if(true)return;
     $rootScope.$on( "$routeChangeStart", function(event, next, current) 
     	{    	
     	if ( $rootScope.user ==null || !$rootScope.user.logged)         
     		if($location.path().indexOf("/community")<0)
     			$location.path( "/community/login" );
         
-    	});         
+    	});     
    })
   .directive('customBackground2', [function(){
     return {
@@ -146,17 +186,19 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
 /** index.product **/
 .factory("product",["$resource",function($resource)		{return $resource("index/item/:id",{id:"@id"});	}])
 .controller("productController",["pricing","groups","product","$http","$scope","$routeParams","$resource","$q",function (pricing,groups,product, $http,$scope,$routeParams,$resource,$q)
-	{			
+	{				
+	
 	// /data/product.json			
 	var filter = function(data)
 		{		
 		for(var i in data)
 			$scope[i]=data[i];		
 		
+		if($scope.gallery==null) $scope.gallery=[];
+		
 		var type = "base";
 		if(data["taglie"]!=null)	{type="wear";}		
-		$scope.type="/views/products/single/"+type+".html";
-			
+		$scope.type="/views/products/single/"+type+".html";		
 		
 		/*
 		taglie.list().then(function(data)
@@ -176,7 +218,7 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
 			angular.forEach(data,function(value,key)
 				{
 				var name = value.name;
-				$scope.groups.push({name:name,checked:$.inArray(name,groupList)})
+				$scope.groups.push({name:name,checked:$.inArray(name,groupList)>=0})
 				})
 			
 			});
@@ -195,7 +237,7 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
 		}
 	
 	var save=function()
-		{			
+		{					
 		var loading = $q.defer();
 		
 		this.loading=loading.promise;
@@ -207,7 +249,8 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
 				"description":this.description,
 				"prices":{},	
 				"groups":[],
-			 	"gallery":[]			 		
+			 	"gallery":[],
+				"extra":$scope.extra
 			 	}		
 		
 		obj.gallery=this.gallery;
@@ -264,8 +307,9 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
    	{		
 	$scope.nuovo=function(name)
 		{	
-		$scope.list.push({name:name});
-		pricing.save()
+		var obj = {name:$scope.name};
+		
+		pricing.save(obj,function(){$scope.list.push(obj);})
 		}
 	$scope.remove=function(item)
 		{				
@@ -361,7 +405,29 @@ angular.module('myapp',["app","ngRoute","ngResource","ngCommunity","map","cgBusy
 		logged:false
 		}
     }
-]);
+])
+.controller('taggableController',['$scope',function($scope)
+    {
+	var type="base";
+	$scope.media=[];
+	$scope.gallery=[];
+	$scope.type="/views/taggable/single/"+type+".html";
+    }])
+.controller('taggableListController',['$scope','items',function($scope,items)
+    {
+	$scope.list=[];
+	items.query().then(function(data)
+		{
+		for(i in data)
+			{						
+			data[i].latitude	=	data[i].position.lat;
+			data[i].longitude	=	data[i].position.lng;			
+			$scope.list.push(data[i])
+			}
+		});
+	
+    }]);
+
 
 
 //UNDEFINED

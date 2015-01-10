@@ -22,7 +22,8 @@
 </style>
 
 <div class="page page-groups">
-
+	
+	 
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<strong><span class="glyphicon glyphicon-th"></span>Map</strong>
@@ -39,39 +40,69 @@
 		</div>
 	</div>
 
+	<div data-ng-controller="ModalDemoCtrl" style="margin-bottom:10px;">
+		<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Choose a product</h3>
+        </div>
+        <div class="modal-body">
+             <section class="panel panel-box">
+				
+                <div class="panel-left panel-item bg-facebook" onclick="document.location.href='#/taggable/new/photo'" ng-click="cancel()">					
+                    <p class="size-h1"><i class="fa fa-tag"></i></p>
+                    <p>Photo</p>					
+                </div>
+				
+				
+                <div class="panel-item bg-twitter" onclick="document.location.href='#/products/new/wear'" ng-click="cancel()">
+                    <p class="size-h1"><i class="fa fa-umbrella"></i></p>
+                    <p>Museo</p>
+                </div>
+				
+                <div class="panel-right panel-item bg-google-plus">
+                    <p class="size-h1"><i class="fa fa-tint"></i></p>
+                    <p>Percorso</p>
+                </div>
+				
+            </section>
+        </div>
+        <!--div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div-->
+   		</script>	
+	
+	 	
+	 
 
 	<div class="panel panel-default">
-		<div class="panel-heading">
-			<strong><span class="glyphicon glyphicon-th"></span>Groups</strong>
-
-			<!--progressbar class="progressbar-xs progressQta" data-bind="attr:{value:admin.prodotti.levels.qta}" value="10" type="info"></progressbar-->
-
-
-			<SPAN class="btn-right"><INPUT TYPE="text" ng-model="name" />
-				<span class="btn btn-info" ng-click="addRandom()">Nuova</span></SPAN>
+		<div class="panel-heading" style="position:relative">
+			<strong><span class="glyphicon glyphicon-th"></span>Groups</strong>			
+			<div style="position:absolute; right:4px; top:3px;"><button class="btn btn-primary" ng-click="open()"><i class="fa fa-sun-o"></i> Nuovo</button></div>			
 		</div>
 		<div>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<TH CLASS="nome">Nome</TH>
-						<TH CLASS="prezzo">Latitudine</TH>
-						<TH CLASS="prezzo">Longitudine</TH>
+						<TH CLASS="nome">Nome</TH>
+						<TH CLASS="prezzo">Type</TH>
 						<TH CLASS="prezzo">Remove</TH>
 					</tr>
 				</thead>
 
 				<tbody>
-					<TR ng-repeat="item in randomMarkers">
-						<TD CLASS="nome">{{item.id}}</TD>
-						<TD CLASS="prezzo">{{item.latitude}}</TD>
-						<TD CLASS="prezzo">{{item.longitude}}</TD>
+					<TR ng-repeat="item in list">				
+						<TD CLASS="prezzo"><img style="width:20px; height:20px" ng-src="{{item.img}}"/></TD>
+						<TD CLASS="prezzo">{{item.name}}</TD>				
+						<TD CLASS="prezzo">{{item.type}}</TD>						
 						<TD><A ng-click="removeItem($index)">REMOVE</A></TD>
 					</TR>
 				</tbody>
 			</table>
 
 		</div>
+	</div>
 	</div>
 	
 </div>

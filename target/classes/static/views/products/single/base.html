@@ -87,13 +87,7 @@
 									<div class="col-sm-10">
 										<input type="text" class="form-control" placeholder="Code" ng-model="code">
 									</div>
-								</div>
-								<div class="form-group">
-									<label for="code" class="col-sm-2 control-label">Giacenza</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control" placeholder="Giacenza">
-									</div>
-								</div>
+								</div>								
 								<div class="form-group">
 									<label for="code" class="col-sm-2 control-label">Descrizione</label>
 									<div class="col-sm-10">
@@ -102,8 +96,14 @@
 											ng-model="description"></textarea>
 									</div>
 								</div>
-
-
+								<div class="form-group">
+									<label for="code" class="col-sm-2 control-label">Vending</label>
+									<label class="switch col-sm-10"><input type="checkbox" ng-model="vending"><i></i></label>									
+								</div>	
+								<div class="form-group">
+									<label for="code" class="col-sm-2 control-label">Store</label>
+									<label class="switch col-sm-10"><input type="checkbox" ng-model="store"><i></i></label>									
+								</div>	
 
 							</div>
 						</section>
@@ -119,24 +119,18 @@
 								<strong><span class="glyphicon glyphicon-th"></span>Gallery</strong>
 							</div>
 							<div class="panel-body">
-								<ul class="gallery">
-									<span>
-										<div id="templateAdminProdottoGallery">
-											<li ng-repeat="image in gallery"
-												style="background-image: url('{{image.img}}')">
-												<div class="close" data-bind="click:remove">X</div>
-												<div class="imgLoading"
-													data-bind="visible:loading,style:{top:loading}"
-													style="display: none;">
-													<div style="position: absolute; top: 0; left: 50%">
-														<span data-bind="text:loading"></span>
-													</div>
-												</div>
-											</li>
+								
+								<ul class="gallery">												
+									<li ng-repeat="image in gallery" style="background-image: url('{{image.img}}')">
+										<div class="close" ng-click="gallery.splice($index,1)">X</div>
+										<div class="imgLoading" style="display: none;">
+											<div style="position: absolute; top: 0; left: 50%">
+												<span></span>
+											</div>
 										</div>
-									</span>
-									<li class="add" upload="base" onselected="addImage"
-										onloading="waitImage" onloaded="changeImage">+</li>
+									</li>
+										
+									<li addTo="gallery" class="add" upload="base">+</li>
 								</ul>
 							</div>
 						</section>
@@ -152,23 +146,20 @@
 							</div>
 							<div class="panel-body">
 								<form class="form-horizontal" role="form">
-									<SPAN data-bind="source:prices"
-										data-template="templateAdminProdottoListini">
-
-										<div ID="templateAdminProdottoListini">
-											<DIV CLASS="form-group" ng-repeat="item in pricing">
-												<LABEL data-bind="text:name" class="col-sm-2 control-label">{{item.name}}</LABEL>
-												<div class="col-sm-10">
-													<div class="input-group">
-														<span class="input-group-addon">&euro;</span> <INPUT
-															TYPE="text" PLACEHOLDER="10" class="form-control"
-															ng-model="item.value" />
-													</div>
+									
+									<div ID="templateAdminProdottoListini">
+										<DIV CLASS="form-group" ng-repeat="item in pricing">
+											<LABEL class="col-sm-2 control-label">{{item.name}}</LABEL>
+											<div class="col-sm-10">
+												<div class="input-group">
+													<span class="input-group-addon">&euro;</span> <INPUT
+														TYPE="text" PLACEHOLDER="10" class="form-control"
+														ng-model="item.value" />
 												</div>
-											</DIV>
-										</div>
-
-									</SPAN>
+											</div>
+										</DIV>
+									</div>
+									
 								</form>
 							</div>
 						</section>
@@ -179,23 +170,88 @@
 								<strong><span class="glyphicon glyphicon-th"></span>Categorie</strong>
 							</div>
 							<div class="panel-body">
-								<DIV>
+								<form class="form-horizontal" role="form">
+								
+									<DIV ID="tplAdminCategorieList">	
+										<div class="form-group" ng-repeat="group in groups">
+				                            <div class="col-sm-offset-2 col-sm-10">
+				                                <div class="checkbox">
+				                                    <label>
+				                                        <input type="checkbox" ng-checked="group.checked"> {{group.name}}
+				                                    </label>
+				                                </div>
+				                            </div>
+				                        </div>																		
+									</DIV>
+								
+								</form>
+							</div>
+						</section>
+					</div>
+				</div>				
+				
+				<div class="row">
+					<div class="col-md-12" ng-show="vending">
+						<section class="panel panel-default">
+							<div class="panel-heading">
+								<strong><span class="glyphicon glyphicon-th"></span> Vending</strong>								
+							</div>
+							<div class="panel-body">
 
-									<div ID="tplAdminCategorieList" ng-repeat="group in groups">
-										<DIV CLASS="form-group">
-											<label class="ui-checkbox"><input type="checkbox"
-												ng-checked="group.checked" /><SPAN>{{group.name}}</SPAN></LABEL>
-										</DIV>
+								<div class="form-group">
+									<label for="name" class="col-sm-2 control-label">Distributore</label>
+									<div class="col-sm-5">
+										<input type="text" class="form-control" placeholder="Posizione" ng-model="extra.vending.position">										
 									</div>
-
-								</DIV>
+									<div class="input-group ui-spinner" data-ui-spinner="">
+				                        <span class="input-group-btn">
+				                            <button type="button" class="btn btn-default" data-spin="down">
+				                                <i class="fa fa-minus"></i>
+				                            </button>
+				                        </span>
+				                        <input type="text" class="spinner-input form-control" ng-model="extra.vending.step">
+				                        <span class="input-group-btn">
+				                            <button type="button" class="btn btn-primary" data-spin="up">
+				                                <i class="fa fa-plus"></i>
+				                            </button>
+				                        </span>				                        
+				                    </div>
+								</div>																
+								
 							</div>
 						</section>
 					</div>
 				</div>
 
+				<div class="row">
+					<div class="col-md-12" ng-show="store">
+						<section class="panel panel-default">
+							<div class="panel-heading">
+								<strong><span class="glyphicon glyphicon-th"></span> Store</strong>								
+							</div>
+							<div class="panel-body">
 
-
+								<div class="form-group">
+									<label for="name" class="col-sm-2 control-label">Giacenza</label>									
+									<div class="input-group ui-spinner" data-ui-spinner="">
+				                        <span class="input-group-btn">
+				                            <button type="button" class="btn btn-default" data-spin="down">
+				                                <i class="fa fa-minus"></i>
+				                            </button>
+				                        </span>
+				                        <input type="text" class="spinner-input form-control">
+				                        <span class="input-group-btn">
+				                            <button type="button" class="btn btn-primary" data-spin="up">
+				                                <i class="fa fa-plus"></i>
+				                            </button>
+				                        </span>				                        
+				                    </div>
+								</div>																
+								
+							</div>
+						</section>
+					</div>
+				</div>
 			</DIV>
 		</div>
 	</form>
